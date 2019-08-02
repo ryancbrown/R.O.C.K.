@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 module.exports = function(sequelize, DataTypes) {
-  var Artist = sequelize.define("Artist", {
+  var Events = sequelize.define("Events", {
     event_name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -39,5 +39,5 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   });
-  return Artist;
+  return Events;
 };

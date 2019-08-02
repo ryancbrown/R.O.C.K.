@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
     rate: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 10
+      defaultValue: 0
     },
     rate_negotiable: {
       type: DataTypes.BOOLEAN,
