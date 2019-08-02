@@ -2,4 +2,4 @@ DROP DATABASE IF EXISTS pocrockdb;
 CREATE DATABASE pocrockdb;
 
 -- DROP DATABASE IF EXISTS artistdb;
--- CREATE DATABASE artistdb;
+-- CREATE DATABASE artistdb;``
