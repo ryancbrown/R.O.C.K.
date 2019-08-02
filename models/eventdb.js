@@ -5,23 +5,23 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    type: {
+    event_type: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    date: {
+    event_date: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    link: {
+    event_link: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    location: {
+    event_location: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    description: {
+    event_description: {
       type: DataTypes.STRING,
       allowNull: false
     },

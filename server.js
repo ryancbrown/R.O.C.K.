@@ -33,6 +33,9 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
+//Events routes
+app.use("/events", require("./routes/apiRoutes"));
+
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
