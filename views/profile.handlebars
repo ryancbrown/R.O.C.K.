@@ -1,0 +1,70 @@
+<div class="container mx-auto">
+    <!-- Header -->
+    {{#with artistProfile}}
+    <div class="flex mb-4" id="header">
+        <div class="w-4/6 mt-5 rounded-tl-lg" style="background:url('{{this.profile_image}}') no-repeat center center;background-size:cover;"></div>
+        <div class="w-2/6 bg-gray-100 mt-5 p-5 rounded-tr-lg">
+            <span class="text-4xl">{{this.artist_name}}</span>
+            
+        </div>
+    </div>
+   
+
+    <!-- Book -->
+    <div class="flex mb-4 border-b border-dotted">
+        <div class="w-4/6">
+        </div>
+        <div class="w-2/6 border-b border-dotted mb-4">
+            <button class="bg-purple-500 hover:bg-blue-700 text-white w-full py-2 px-4 rounded">
+                Book
+            </button>
+        </div>
+    </div>
+
+    <!-- DB Structure-->
+    <div class="flex mb-4">
+            <!-- Left -->
+            <div class="w-4/6">
+                <div class="flex mb-4"> 
+
+                        <div class="w-full py-3" id="userLeft">
+                            <div class="flex mb-4 line py-2">
+                                <div class="w-3/6">
+                                    <button class="bg-purple-500 uppercase h-auto w-auto text-xs text-white py-1 px-2 rounded">
+                                        {{this.art_medium_genre}}
+                                    </button>
+                                </div>
+                                <div class="w-3/6 text-right"></div>
+                            </div>
+                            <div class="userInformation">
+                                <div class="flex mb-4 line py-2">
+                                    <div class="w-3/6">Requested Rate: </div>
+                                    <div class="w-3/6 text-right">${{this.rate}}</div>
+                                </div>
+                                <div class="flex mb-4 line py-2">
+                                    <div class="w-3/6">Negotiable</div>
+                                    <div class="w-3/6 text-right">{{#if true}}Yes{{else}}No{{/if}}</div>
+                                </div>
+                                <div class="flex mb-4 line py-2">
+                                    <div class="w-3/6">a</div>
+                                    <div class="w-3/6 text-right">$30</div>
+                                </div>
+                                <div class="flex mb-4 line py-2">
+                                    <div class="w-3/6">a</div>
+                                    <div class="w-3/6 text-right">$30</div>
+                                </div>         
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!-- Right -->
+            <div class="w-2/6">
+                
+            </div>
+        </div>
+        {{/with}}
+</div>
+
+
+
+

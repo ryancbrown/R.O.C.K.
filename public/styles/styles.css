@@ -1,3 +1,35 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: 120px;
+  overflow-x: hidden
+}
+
 .list-group-item {
   line-height: 2.5;
+}
+
+#rateCheckBox { 
+  left: 100px;
+  top: 8px;
+}
+
+#header { 
+  height: 500px;
+}
+
+.social {
+  cursor: pointer;
+}
+
+#twitterHandle, #facebookHandle, #youtubeHandle { 
+  position: absolute;
+  width: 35px; 
+  top: 8px; 
+  left: 8px; 
+  padding: 0 9px 0 0;
+  border-right: 1px solid #EDF2F7;
 }
