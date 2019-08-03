@@ -6,5 +6,7 @@ branches:
 cache:
   directories:
     - node_modules
+install: 
+  - npm i -g mocha
 before_install:
   - mysql -e 'CREATE DATABASE testdb;'
