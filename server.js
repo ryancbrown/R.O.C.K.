@@ -1,7 +1,6 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-var helpers = require("handlebars-helpers");
 
 var db = require("./models");
 
@@ -33,6 +32,9 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
+
+//Events routes
+app.use("/events", require("./routes/apiRoutes"));
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {

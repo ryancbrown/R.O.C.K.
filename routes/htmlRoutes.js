@@ -26,8 +26,29 @@ module.exports = function(app) {
       if (err) {
         // log error;
       } else {
-        // console.log(res);
+        // do something
       }
+    });
+  });
+
+  // Load index page
+  app.get("/", function(req, res) {
+    db.Events.findAll({}).then(function(dbEvents) {
+      res.render("index", {
+        msg: "Welcome!",
+        examples: dbEvents
+      });
+    });
+  });
+
+  // Load example page and pass in an example by id
+  app.get("/events/:id", function(req, res) {
+    db.Events.findOne({ where: { id: req.params.id } }).then(function(
+      dbEvents
+    ) {
+      res.render("event", {
+        example: dbEvents
+      });
     });
   });
 
