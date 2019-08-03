@@ -1,3 +1,4 @@
+INSERT INTO Events (event_id) VALUES ('1');
 INSERT INTO Events (event_name) VALUES ('queer POC parties');
 INSERT INTO Events (event_type) VALUES ('Music');
 INSERT INTO Events (event_date) VALUES ('1/1/2022');

@@ -1,43 +1,51 @@
 /* eslint-disable camelcase */
 module.exports = function(sequelize, DataTypes) {
-  var Events = sequelize.define("Events", {
-    event_name: {
+  var Artist = sequelize.define("Artist", {
+    artist_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    artist_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    event_type: {
+    artist_real_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    event_date: {
+    artist_email: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    event_link: {
+    art_medium_genre: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    event_location: {
+    audience: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    event_description: {
+    demo: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    event_image: {
+    profile_image: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    price: {
+    rate: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
-    attendence: {
-      type: DataTypes.INTEGER,
-      allowNull: true
+    rate_negotiable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    social: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   });
-  return Events;
+  return Artist;
 };
