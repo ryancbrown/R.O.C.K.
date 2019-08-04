@@ -1,10 +1,61 @@
+/* eslint-disable camelcase */
 var db = require("../models");
+
+//dispaly events page
+module.exports = function(app) {
+  app.get("/events", function(req, res) {
+    res.render("events");
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  app.post("/events", function(req, res) {
+    var req = req.body;
+    var route = req.eventName;
+    route = route.replace(/\s+/g, "-").toLowerCase();
+
+    db.Events.create({
+      event_id: route,
+      event_name: req.eventName,
+      event_type: req.eventType,
+      event_date: req.eventDate,
+      event_link: req.eventLink,
+      event_loation: req.eventLocation,
+      event_description: req.eventDescription,
+      event_image: req.eventImage,
+      price: req.price,
+      attendence: req.attendence
+    }).then(function(res, err) {
+      if (err) {
+        // log error;
+      } else {
+        // do something
+      }
+    });
+  });
+
+  // Load events page and pass in an events by id
+  app.get("/events/:id", function(req, res) {
+    db.Events.findOne({ where: { id: req.params.id } }).then(function(
+      dbEvents
+    ) {
+      res.render("event", {
+        example: dbEvents
+      });
+    });
+  });
+
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
+  });
+};
 
 module.exports = function(app) {
   app.get("/profile", function(req, res) {
     res.render("profile-input");
   });
 
+  // eslint-disable-next-line no-unused-vars
   app.post("/profile", function(req, res) {
     var req = req.body;
     var route = req.artistName;
@@ -37,17 +88,6 @@ module.exports = function(app) {
       res.render("index", {
         msg: "Welcome!",
         examples: dbEvents
-      });
-    });
-  });
-
-  // Load example page and pass in an example by id
-  app.get("/events/:id", function(req, res) {
-    db.Events.findOne({ where: { id: req.params.id } }).then(function(
-      dbEvents
-    ) {
-      res.render("event", {
-        example: dbEvents
       });
     });
   });
