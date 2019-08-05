@@ -1,57 +1,55 @@
 /* eslint-disable camelcase */
 module.exports = function(sequelize, DataTypes) {
-  var Artist = sequelize.define(
-    "Artist",
-    {
-      artist_id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true
-      },
-      artist_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      artist_real_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      artist_email: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      art_medium_genre: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      audience: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      demo: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      profile_image: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      rate: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0
-      },
-      rate_negotiable: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-      },
-      social: {
-        type: DataTypes.STRING,
-        allowNull: false
-      }
+  var Artist = sequelize.define("Artist", {
+    artist__route_name: {
+      type: DataTypes.STRING
     },
-    {
-      timestamps: false
+    artist__name: {
+      type: DataTypes.STRING
+    },
+    artist__real_name: {
+      type: DataTypes.STRING
+    },
+    artist__email: {
+      type: DataTypes.STRING
+    },
+    artist__medium_genre: {
+      type: DataTypes.STRING
+    },
+    aritist__audience: {
+      type: DataTypes.STRING
+    },
+    artist__demo_youtube: {
+      type: DataTypes.STRING
+    },
+    artist__demo_spotify: {
+      type: DataTypes.STRING
+    },
+    artist__profile_image: {
+      type: DataTypes.STRING
+    },
+    artist__pay_rate: {
+      type: DataTypes.INTEGER
+    },
+    artist__rate_negotiable: {
+      type: DataTypes.BOOLEAN
+    },
+    artist__social_facebook: {
+      type: DataTypes.STRING
+    },
+    artist__social_twitter: {
+      type: DataTypes.STRING
+    },
+    artist__social_youtube: {
+      type: DataTypes.STRING
+    },
+    artist__login_email: {
+      type: DataTypes.STRING
+    },
+    admin_approved: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
-  );
+  });
   return Artist;
 };
