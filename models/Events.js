@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       event_id: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
       },
       event_name: {
