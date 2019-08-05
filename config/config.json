@@ -4,7 +4,7 @@
     "password": "password",
     "database": "artistdb",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql" 
   },
   "test": {
     "username": "root",

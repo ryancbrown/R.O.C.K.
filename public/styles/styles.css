@@ -1,35 +1,50 @@
+/* main template */ 
 html {
   min-height: 100%;
   position: relative;
 }
 
 body {
-  margin-bottom: 120px;
-  overflow-x: hidden
+  margin-bottom: 184px;
+  overflow-x: auto;
+}
+
+header a { 
+  color: #9F7AEA;
+}
+
+footer {
+  bottom: 0;
+  height: 184px;
+  position: absolute;
+  width: 100%;
 }
 
 .list-group-item {
   line-height: 2.5;
 }
 
+/* Profile */
 #rateCheckBox { 
   left: 100px;
   top: 8px;
 }
 
-#header { 
-  height: 500px;
+#profileHeader { 
+  height: 400px;
 }
 
-.social {
+.social, #modalClose {
   cursor: pointer;
 }
 
 #twitterHandle, #facebookHandle, #youtubeHandle { 
-  position: absolute;
-  width: 35px; 
-  top: 8px; 
   left: 8px; 
-  padding: 0 9px 0 0;
-  border-right: 1px solid #EDF2F7;
+  position: absolute;
+  top: 9px; 
+  width: 21px; 
+}
+
+.socialButtons img { 
+  width: 40px;
 }

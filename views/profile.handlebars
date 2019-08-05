@@ -1,11 +1,42 @@
+<div class="flex flex-col min-h-screen hidden h-full items-center justify-center opacity-25 bg-gray-700" id="modal">
+    <div class="container mx-auto fixed w-full">   
+        <div class="flex">
+            <div class="w-1/6"></div>
+
+            <div class="bg-gray-200 rounded w-4/6 px-16 py-16">
+            <div class="flex">
+                    <svg class="fill-current" id="modalClose" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>								
+                </div>
+            </div>  
+            </div>
+
+            <div class="w-1/6"></div>
+        </div>
+    </div>
+</div>
+
 <div class="container mx-auto">
     <!-- Header -->
     {{#with artistProfile}}
-    <div class="flex mb-4" id="header">
-        <div class="w-4/6 mt-5 rounded-tl-lg" style="background:url('{{this.profile_image}}') no-repeat center center;background-size:cover;"></div>
-        <div class="w-2/6 bg-gray-100 mt-5 p-5 rounded-tr-lg">
-            <span class="text-4xl">{{this.artist_name}}</span>
+    <div class="flex mb-4" id="profileHeader">
+        <div class="w-4/6 mt-5 rounded-tl-lg" style="background:url('{{artist__profile_image}}') no-repeat center center;background-size:cover;"></div>
+        <div class="w-2/6 bg-gray-100 mt-5 p-8 rounded-tr-lg">
+            <span class="text-4xl">{{artist__name}}</span>
             
+            <div class="flex my-4 socialButtons">
+                <div class="w-1/6 pr-2">
+                    {{#if artist__social_facebook}}<a href="https://twitter.com/{{artist__social_twitter}}"><img src="/images/facebook.png" /></a>{{else}}{{/if}}
+                </div>
+                
+                <div class="w-1/6 pr-2">
+                    {{#if artist__social_twitter}}<a href="https://facebook.com/{{artist__social_twitter}}"><img src="/images/twitter.png" /></a>{{else}}{{/if}}
+                </div>
+            
+                <div class="w-1/6">
+                    {{#if artist__social_youtube}}<a href="https://youtube.com/{{artist__social_twitter}}"><img src="/images/youtube.png" /></a>{{else}}{{/if}}
+                </div>
+            </div>
+
         </div>
     </div>
    
@@ -15,7 +46,7 @@
         <div class="w-4/6">
         </div>
         <div class="w-2/6 border-b border-dotted mb-4">
-            <button class="bg-purple-500 hover:bg-blue-700 text-white w-full py-2 px-4 rounded">
+            <button class="bg-purple-500 hover:bg-blue-700 text-white w-full py-2 px-4 rounded" id="bookArtist">
                 Book
             </button>
         </div>
@@ -65,6 +96,11 @@
         {{/with}}
 </div>
 
-
+<br><BR><BR>
+<br><BR><BR>
+<br><BR><BR>
+<br><BR><BR>
+<br><BR><BR>
+<br><BR><BR>
 
 
