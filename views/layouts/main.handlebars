@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <title>POC ROCK</title>
 </head>
-
 <body>
 <nav class="flex items-center justify-between flex-wrap bg-white p-4 border-b-2 border-gray-300">
   <div class="flex items-center flex-shrink-0 text-black mr-6">
@@ -28,10 +26,65 @@
       </a>
     </div>
     <div>
-      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-purple-800 border-purple-800 hover:border-transparent hover:text-purple-400 hover:bg-purple-800 mt-4 lg:mt-0">Log In</a>
+      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-purple-800 border-purple-800 hover:border-transparent hover:text-purple-400 hover:bg-purple-800 mt-4 lg:mt-0" id="loadLogin">Log In</a>
     </div>
   </div>
 </nav>
+    <!-- Log into an existing account --> 
+    <div class="bg-gray-200 border-b hidden flex mb-8 pt-10 pb-8" id="existingAccount">
+      <div class="container mx-auto"> 
+        <div class="flex"> 
+          <div class="w-full"></div>
+        </div>  
+        
+        <div class="flex"> 
+          <div class="error italic text-red-600 text-right text-sm pr-3 py-1 w-3/6"></div>
+          <div class="pr-5 w-1/6">
+              <input class="border py-1 px-3 rounded w-full" id="emailLogin" placeholder="email">
+          </div>
+          <div class="pr-5 w-1/6">
+              <input class="border py-1 px-3 rounded w-full" id="passwordLogin" type="password" placeholder="password">
+          </div>
+          <div class="w-1/6">
+            <button id="login" class="bg-purple-500 border hover:bg-blue-700 text-sm text-white px-4 py-1 rounded w-full">Log in</button>
+          </div>
+        </div>
+
+        <div class="flex"> 
+          <div class="pt-2 text-right text-sm w-full">
+            <em>Don't have an account? <a href="" id="loadNewAccount">Create one.</a></em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create a profile --> 
+    <div class="bg-purple-200 flex hidden mb-8 pb-8 pt-10" id="newAccount">
+      <div class="container mx-auto"> 
+        <div class="flex"> 
+          <div class="w-full"></div>
+        </div>
+        
+        <div class="flex">
+          <div class="w-3/6"></div>
+          <div class="w-1/6 pr-5">
+              <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createEmail" placeholder="email">
+          </div>
+          <div class="w-1/6 pr-5">
+            <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createPassword" type="password" placeholder="password">
+          </div>
+          <div class="w-1/6">
+            <button id="createLogin" class="bg-purple-500 border hover:bg-blue-700 w-full px-4 py-1 rounded text-sm text-white">Create Profile</button>
+          </div>
+        </div>
+
+        <div class="flex"> 
+          <div class="pt-2 text-right text-sm w-full">
+            <em>Oops! I meant to <a id="returnLogin" href="">log in</a>.</em>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
   {{{body}}}

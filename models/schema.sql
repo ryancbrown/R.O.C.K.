@@ -1,5 +1,2 @@
-DROP DATABASE IF EXISTS pocrockdb;
+DROP DATABASE IF EXISTS artistfb;
 CREATE DATABASE pocrockdb;
-
--- DROP DATABASE IF EXISTS artistdb;
--- CREATE DATABASE artistdb;
