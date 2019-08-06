@@ -96,8 +96,8 @@ $("#createLogin").on("click", function(e) {
     password: $("#createPassword").val()
   };
 
-  $.post("/login/create", createLogin).then(function(res) {
-    console.log(res);
+  $.post("/login/create", createLogin, function(res) {
+    window.location = res.redirect;
   });
 });
 
@@ -110,7 +110,30 @@ $("#login").on("click", function(e) {
   };
 
   $.post("/login", findLogin).then(function(res) {
-    console.log(res);
+    localStorage.setItem("token", res.token);
+
     $(".error").html(res.message);
+  });
+});
+
+// Check if the user has
+$(document).ready(function() {
+  var token = { token: localStorage.getItem("token") };
+
+  $.post("/token", token).then(function(res) {
+    if (res.status === "valid") {
+      // Change "Log in" to "Logout", change id to "logout" so database can be updated if clicked
+      $("#loadLogin")
+        .text("Logout")
+        .attr({ id: "logout" });
+    }
+  });
+});
+
+$(document).on("click", "#logout", function() {
+  var token = { token: localStorage.getItem("token") };
+
+  $.post("/logout", token).then(function(res) {
+    console.log(res.message);
   });
 });

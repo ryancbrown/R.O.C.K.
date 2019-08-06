@@ -8,6 +8,12 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    token: {
+      type: DataTypes.STRING
+    },
+    token_expiration: {
+      type: DataTypes.DATE
     }
   });
   return Login;

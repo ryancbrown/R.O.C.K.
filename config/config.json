@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "Spl3ndid",
-    "database": "pocrockdb",
+    "password": "password",
+    "database": "artistdb",
     "host": "localhost",
     "dialect": "mysql" 
   },
   "test": {
     "username": "root",
-    "password": "Spl3ndid",
+    "password": "password",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
