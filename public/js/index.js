@@ -1,3 +1,24 @@
+//EVENT PAGE EVENT CLICSKS
+// add in the event licks for that there
+$("#eventSubmit").on("click", function(event) {
+  event.preventDefault();
+
+  var form = {
+    eventName: $("#eventName").val(),
+    eventType: $("#eventType").val(),
+    eventLocation: $("#eventLocation").val(),
+    eventLink: $("#eventLink").val(),
+    eventDate: $("#eventDate").val(),
+    eventPrice: $("#eventPrice").val(),
+  };
+
+  // event submit AJAX post
+  $.post("/event-submit", form).then(function(req, res) {
+    console.log(res);
+  });
+});
+
+//PROFILE EVENT CLICKS
 $("#profileSubmit").on("click", function(event) {
   event.preventDefault();
 
