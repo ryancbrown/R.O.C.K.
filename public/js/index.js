@@ -9,7 +9,7 @@ $("#eventSubmit").on("click", function(event) {
     eventLocation: $("#eventLocation").val(),
     eventLink: $("#eventLink").val(),
     eventDate: $("#eventDate").val(),
-    eventPrice: $("#eventPrice").val(),
+    eventPrice: $("#eventPrice").val()
   };
 
   // event submit AJAX post
