@@ -3,6 +3,31 @@ var db = require("../models");
 var bcrypt = require("bcrypt");
 var saltRounds = 10;
 
+//dispaly events page
+module.exports = function(app) {
+  ///////////////////////////////
+  //          EVENTS          //
+  ///////////////////////////////
+  app.get("/events", function(req, res) {
+    res.render("events");
+  });
+
+  // Load events page and pass in an events by id
+  app.get("/events", function(req, res) {
+    db.Events.findOne({ where: { route_name: req.params.routename } }).then(
+      function(Events) {
+        res.render("events", {
+          events: Events
+        });
+      }
+    );
+  });
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
+  });
+};
+
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -22,6 +47,7 @@ module.exports = function(app) {
     res.render("profile-input");
   });
 
+  // eslint-disable-next-line no-unused-vars
   app.post("/profile", function(req, res) {
     var req = req.body;
     var route = req.artistName;
@@ -58,6 +84,7 @@ module.exports = function(app) {
 
   // Collect email and password
   // Salt password and store
+  // eslint-disable-next-line no-unused-vars
   app.post("/login/create", function(req, res) {
     var req = req.body;
     var salt = bcrypt.genSaltSync(saltRounds);
@@ -84,6 +111,7 @@ module.exports = function(app) {
         db.Users.create({
           email: email,
           password: hash
+          // eslint-disable-next-line no-unused-vars
         }).then(function(results, err) {
           createProfile(email);
           console.log("user created");
@@ -154,6 +182,7 @@ module.exports = function(app) {
       artist__social_twitter: "",
       artist__social_youtube: "",
       artist__login_email: email
+      // eslint-disable-next-line no-unused-vars
     }).then(function(res, err) {
       console.log("artist profile created");
     });

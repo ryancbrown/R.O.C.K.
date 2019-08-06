@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 //Events routes
-app.use("/events", require("./routes/apiRoutes"));
+app.use("/events", require("./routes/htmlRoutes"));
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
