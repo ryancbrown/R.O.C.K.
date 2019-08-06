@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false
       },
-      price: {
+      event_price: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: "$0"
