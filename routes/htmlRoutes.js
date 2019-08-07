@@ -4,55 +4,9 @@ var bcrypt = require("bcrypt");
 var saltRounds = 10;
 
 //dispaly events page
-module.exports = function(app) {
-  ///////////////////////////////
-  //          EVENTS          //
-  ///////////////////////////////
+// module.exports = function(app) {
 
-  app.get("/events-submit", function(req, res) {
-    res.render("events-input");
-  });
-
-  // Load events page and pass in an events by id
-  app.get("/events", function(req, res) {
-    db.Events.findOne({ where: { route_name: req.params.routename } }).then(
-      function(Events) {
-        res.render("events", {
-          events: Events
-        });
-      }
-    );
-  });
-
-  // eslint-disable-next-line no-unused-vars
-  app.post("/events", function(req, res) {
-    var req = req.body;
-    var route = req.eventName;
-    route = route.replace(/\s+/g, "-").toLowerCase();
-
-    db.Events.update({
-      events_route: route,
-      event_name: req.eventName,
-      event_type: req.eventType,
-      event_date: req.eventLocation,
-      event_link: req.eventLink,
-      event_location: req.eventLocation,
-      event_description: req.eventDescription,
-      event_image: req.eventImage,
-      event_price: req.eventPrice
-    }).then(function(res, err) {
-      if (err) {
-        // log error;
-      } else {
-        // do something
-      }
-    });
-  });
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
-};
+// };
 
 module.exports = function(app) {
   // Load index page
@@ -243,6 +197,51 @@ module.exports = function(app) {
     });
   });
 
+  ///////////////////////////////
+  //          EVENTS          //
+  ///////////////////////////////
+
+  //loading the events-submit page
+  app.get("/event-submit", function(req, res) {
+    res.render("event-submit");
+  });
+
+  // Load events page and pass in an events by id
+  app.get("/events", function(req, res) {
+    db.Events.findAll({}).then(function(Events) {
+      res.send("hello");
+      // res.render("events", {
+      //   events: Events
+      // }
+      // );
+    });
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  app.post("/event-submit", function(req, res) {
+    var req = req.body; //form
+    var route = req.body.eventName;
+    route = route.replace(/\s+/g, "-").toLowerCase();
+
+    console.log("req body", req.body);
+
+    db.Events.update({
+      events_route: route,
+      event_name: req.eventName,
+      event_type: req.eventType,
+      event_date: req.eventLocation,
+      event_link: req.eventLink,
+      event_location: req.eventLocation,
+      event_description: req.eventDescription,
+      event_image: req.eventImage,
+      event_price: req.eventPrice
+    }).then(function(err, res) {
+      if (err) {
+        throw err;
+      }
+      console.log(res);
+    });
+  });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");

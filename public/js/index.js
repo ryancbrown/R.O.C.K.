@@ -14,6 +14,7 @@ $("#eventSubmit").on("click", function(event) {
     eventPrice: $("#eventPrice").val()
   };
 
+  console.log("form" + JSON.stringify(form));
   // event submit AJAX post
   $.post("/event-submit", form).then(function(req, res) {
     console.log(res);
@@ -182,7 +183,7 @@ function check(e) {
       }
     } else {
       // click both outside link and outside menu, hide menu
-      navMenuDiv.classList.add("hidden");
+      // navMenuDiv.classList.add("hidden");
     }
   }
 }

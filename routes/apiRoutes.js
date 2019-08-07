@@ -3,8 +3,9 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all events
   app.get("/events", function(req, res) {
-    db.Events.findAll({}).then(function() {
-      res.render("events");
+    db.Events.findAll({}).then(function(dbEvents) {
+      // console.log(dbEvents);
+      res.render("events", { events: dbEvents });
     });
   });
 
