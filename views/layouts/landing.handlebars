@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <title>WELCOME TO POC ROCK</title>
+</head>
+<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+
+<!--Nav-->
+<nav id="header" class="fixed w-full z-30 top-0 text-white">
+
+	<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+			
+		<div class="pl-4 flex items-center">
+			<a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#"> 
+				<!--Icon from: http://www.potlabicons.com/ -->
+                {{!-- radio icon --}}
+                {{!-- <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.005 512.005">
+                <path d=" M 394.667 106.667 L 145.173 106.667 L 321.493 35.52 L 306.773 0 L 37.013 109.867 C 21.546 115.947 10.666 131.52 10.666 149.334 L 10.666 405.334 C 10.667 428.907 29.76 448 53.333 448 L 394.666 448 C 418.239 448 437.333 428.907 437.333 405.333 L 437.333 149.333 C 437.333 125.76 418.24 106.667 394.667 106.667 Z  M 117.333 405.333 C 82.026 405.333 53.333 376.64 53.333 341.333 C 53.333 306.026 82.026 277.333 117.333 277.333 C 152.64 277.333 181.333 306.026 181.333 341.333 C 181.333 376.64 152.64 405.333 117.333 405.333 Z  M 394.667 234.667 L 53.333 234.667 L 53.333 149.334 L 394.666 149.334 L 394.666 234.667 L 394.667 234.667 Z " fill="rgb(0,0,0)" />
+                <rect class="rad-modular" x="322" y="186" width="49" height="49" fill="white" />
+				</svg>  --}} POC ROCK
+			</a>
+		</div>
+
+{{!-- menu start here --}}
+		<div class="block lg:hidden pr-4">
+			<button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-800 hover:border-teal-500 appearance-none focus:outline-none">
+				<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+			</button>
+		</div>
+
+		<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
+			<ul class="list-reset lg:flex justify-end flex-1 items-center">
+				<li class="mr-3">
+					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Events</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Organizer</a>
+				</li>
+			</ul>
+            {{!-- need to fix log in function --}}
+			<button id="loadLogin" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Log In</button>
+		</div>
+	</div>
+
+    <!-- Log into an existing account --> 
+    <div class="bg-gray-200 border-b hidden flex mb-8 pt-10 pb-8" id="existingAccount">
+      <div class="container mx-auto"> 
+        <div class="flex"> 
+          <div class="w-full"></div>
+        </div>  
+        
+        <div class="flex"> 
+          <div class="error italic text-red-600 text-right text-sm pr-3 py-1 w-3/6"></div>
+          <div class="pr-5 w-1/6">
+              <input class="border py-1 px-3 rounded w-full" id="emailLogin" placeholder="email">
+          </div>
+          <div class="pr-5 w-1/6">
+              <input class="border py-1 px-3 rounded w-full" id="passwordLogin" type="password" placeholder="password">
+          </div>
+          <div class="w-1/6">
+            <button id="login" class="bg-purple-500 border hover:bg-blue-700 text-sm text-white px-4 py-1 rounded w-full">Log in</button>
+          </div>
+        </div>
+
+        <div class="flex"> 
+          <div class="pt-2 text-right text-sm w-full">
+            <em>Don't have an account? <a href="" id="loadNewAccount">Create one.</a></em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create a profile --> 
+    <div class="bg-purple-200 flex hidden mb-8 pb-8 pt-10" id="newAccount">
+      <div class="container mx-auto"> 
+        <div class="flex"> 
+          <div class="w-full"></div>
+        </div>
+        
+        <div class="flex">
+          <div class="w-3/6"></div>
+          <div class="w-1/6 pr-5">
+              <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createEmail" placeholder="email">
+          </div>
+          <div class="w-1/6 pr-5">
+            <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createPassword" type="password" placeholder="password">
+          </div>
+          <div class="w-1/6">
+            <button id="createLogin" class="bg-purple-500 border hover:bg-blue-700 w-full px-4 py-1 rounded text-sm text-white">Create Profile</button>
+          </div>
+        </div>
+
+        <div class="flex"> 
+          <div class="pt-2 text-right text-sm w-full">
+            <em>Oops! I meant to <a id="returnLogin" href="">log in</a>.</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	
+	<hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
+</nav>
+
+
+  {{{body}}}
+
+<!--Footer-->
+<footer class="bg-white">
+	<div class="container mx-auto  px-8">
+
+        <div class="w-full flex flex-col md:flex-row py-6">
+				
+			<div class="flex-1 mb-6">
+			
+				<a class="text-purple-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#"> POC ROCK </a>
+			</div>
+		
+		
+            <div class="flex-1">
+                <p class="uppercase text-gray-500 md:mb-6">Pages</p>
+                <ul class="list-reset mb-6">
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Event Listings</a>
+                    </li>
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Artist Database</a>
+                    </li>
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Submit Event</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-1">
+                <p class="uppercase text-gray-500 md:mb-6">Legal</p>
+                <ul class="list-reset mb-6">
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Terms</a>
+                    </li>
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Privacy</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-1">
+                <p class="uppercase text-gray-500 md:mb-6">Social</p>
+                <ul class="list-reset mb-6">
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Facebook</a>
+                    </li>
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Linkedin</a>
+                    </li>
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Twitter</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-1">
+                <p class="uppercase text-gray-500 md:mb-6">Company</p>
+                <ul class="list-reset mb-6">
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Official Blog</a>
+                    </li>
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">About Us</a>
+                    </li>
+                    <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	{{!-- <a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by freepik - www.freepik.com</a> --}}
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/js/index.js"></script>
+</body>
+
+</html>

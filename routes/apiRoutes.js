@@ -23,6 +23,7 @@ module.exports = function(app) {
   });
 
   // Delete an events by id
+  //not in use
   app.delete("/api/events/:id", function(req, res) {
     db.Events.destroy({ where: { id: req.params.id } }).then(function(
       dbEvents
