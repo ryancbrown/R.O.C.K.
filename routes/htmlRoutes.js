@@ -16,6 +16,35 @@ module.exports = function(app) {
   });
 
   ///////////////////////////////
+  //           ADMIN           //
+  ///////////////////////////////
+
+  // Load admin page with accounts needing review
+  app.get("/admin", function(req, res) {
+    db.Artist.findAll({
+      where: { profile__approved: false }
+    }).then(function(results) {
+      res.render("admin", { profiles: results });
+    });
+  });
+
+  // Handle approval or rejection of profiles
+  app.post("/admin", function(req, res) {
+    if (req.body.action === "approve") {
+      db.Artist.update(
+        { profile__approved: true },
+        { where: { id: req.body.userID } }
+      );
+    } else {
+      db.Artist.update(
+        { profile__rejected: true },
+        { where: { id: req.body.userID } }
+      );
+    }
+    res.status(200);
+  });
+
+  ///////////////////////////////
   //          PROFILE          //
   ///////////////////////////////
 
@@ -42,8 +71,7 @@ module.exports = function(app) {
       artist__rate_negotiable: req.rateNegotiable,
       artist__social_facebook: req.socialFacebook,
       artist__social_twitter: req.socialTwitter,
-      artist__social_youtube: req.socialYoutube,
-      admin_approved: req.admin_approved
+      artist__social_youtube: req.socialYoutube
     }).then(function(result) {
       //
     });
@@ -91,7 +119,12 @@ module.exports = function(app) {
           email: email,
           password: hash
         }).then(function() {
+          var token = Math.random()
+            .toString(13)
+            .replace(".", "");
+          var expireToken = moment().add(6, "h");
           createProfile(email);
+          assignToken(email, token, expireToken);
           // eslint-disable-next-line prettier/prettier
           console.log("User \"" + email + "\" created.");
         });

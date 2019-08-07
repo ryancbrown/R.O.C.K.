@@ -1,5 +1,26 @@
-//EVENT PAGE EVENT CLICSKS
-// add in the event licks for that there
+var token = { token: localStorage.getItem("token") };
+
+// On page load send stored token to server
+$.post("/token", token).then(function(res) {
+  if (res.status === "valid") {
+    // Change "Log in" to "Logout", change id to "logout" so database can be updated if clicked
+    $("#loadLogin")
+      .text("Logout")
+      .attr({ id: "logout" });
+
+    $("#options").append(
+      // eslint-disable-next-line prettier/prettier
+      "<div class=\"text-sm lg:flex-grow text-right w-1/12\"><a href=\"/profile\" class=\"block mt-4 lg:inline-block lg:mt-0 text-purple-800 hover:text-purple-400 mr-4 text-right\">Profile</a></div>"
+    );
+
+    $(".align")
+      .removeClass("w-10/12")
+      .addClass("w-9/12");
+  }
+});
+
+// EVENT PAGE EVENT CLICKS
+// add in the event clicks for that ther
 $("#eventSubmit").on("click", function(event) {
   event.preventDefault();
 
@@ -18,7 +39,61 @@ $("#eventSubmit").on("click", function(event) {
   });
 });
 
-//PROFILE EVENT CLICKS
+// Handle booking modal
+$("#bookArtist").on("click", function() {
+  $("#modal").toggleClass("hidden");
+});
+
+$("#modalClose").on("click", function() {
+  $("#modal").toggleClass("hidden");
+});
+
+// Handle login buttons
+// Show initial login button
+$("#loadLogin").on("click", function(e) {
+  e.preventDefault();
+  // If user clicks "login" and newAccount is visible
+  if (
+    $("#newAccount").hasClass("visible") &&
+    $("#existingAccount").hasClass("hidden")
+  ) {
+    // Then remove newAccount
+    $("#newAccount")
+      .toggleClass("hidden")
+      .removeClass("visible");
+  } else {
+    $("#existingAccount")
+      .toggleClass("hidden")
+      .addClass("visible");
+  }
+});
+
+// Switch to create account
+$("#loadNewAccount").on("click", function(e) {
+  e.preventDefault();
+  $("#existingAccount")
+    .toggleClass("hidden")
+    .removeClass("visible");
+  $("#newAccount")
+    .toggleClass("hidden")
+    .addClass("visible");
+});
+
+// Handle username and password creation
+$("#createLogin").on("click", function(e) {
+  e.preventDefault();
+
+  var createLogin = {
+    email: $("#createEmail").val(),
+    password: $("#createPassword").val()
+  };
+
+  $.post("/login/create", createLogin, function(res) {
+    window.location = res.redirect;
+  });
+});
+
+// Create profile
 $("#profileSubmit").on("click", function(event) {
   event.preventDefault();
 
@@ -43,43 +118,7 @@ $("#profileSubmit").on("click", function(event) {
   });
 });
 
-$("#bookArtist").on("click", function() {
-  $("#modal").toggleClass("hidden");
-});
-
-$("#modalClose").on("click", function() {
-  $("#modal").toggleClass("hidden");
-});
-
-/* Login */
-$("#loadLogin").on("click", function(e) {
-  e.preventDefault();
-  // If user clicks "login" and newAccount is visible
-  if (
-    $("#newAccount").hasClass("visible") &&
-    $("#existingAccount").hasClass("hidden")
-  ) {
-    // Then remove newAccount
-    $("#newAccount")
-      .toggleClass("hidden")
-      .removeClass("visible");
-  } else {
-    $("#existingAccount")
-      .toggleClass("hidden")
-      .addClass("visible");
-  }
-});
-
-$("#loadNewAccount").on("click", function(e) {
-  e.preventDefault();
-  $("#existingAccount")
-    .toggleClass("hidden")
-    .removeClass("visible");
-  $("#newAccount")
-    .toggleClass("hidden")
-    .addClass("visible");
-});
-
+// Show login button again if accidentally clicked "create account"
 $("#returnLogin").on("click", function(e) {
   e.preventDefault();
   $("#newAccount")
@@ -88,19 +127,7 @@ $("#returnLogin").on("click", function(e) {
   $("#existingAccount").toggleClass("hidden");
 });
 
-$("#createLogin").on("click", function(e) {
-  e.preventDefault();
-
-  var createLogin = {
-    email: $("#createEmail").val(),
-    password: $("#createPassword").val()
-  };
-
-  $.post("/login/create", createLogin, function(res) {
-    window.location = res.redirect;
-  });
-});
-
+// Handle log in
 $("#login").on("click", function(e) {
   e.preventDefault();
 
@@ -110,23 +137,10 @@ $("#login").on("click", function(e) {
   };
 
   $.post("/login", findLogin).then(function(res) {
+    // If correct store session token
     localStorage.setItem("token", res.token);
-
+    // If error return reason
     $(".error").html(res.message);
-  });
-});
-
-// Check if the user has
-$(document).ready(function() {
-  var token = { token: localStorage.getItem("token") };
-
-  $.post("/token", token).then(function(res) {
-    if (res.status === "valid") {
-      // Change "Log in" to "Logout", change id to "logout" so database can be updated if clicked
-      $("#loadLogin")
-        .text("Logout")
-        .attr({ id: "logout" });
-    }
   });
 });
 
@@ -136,4 +150,43 @@ $(document).on("click", "#logout", function() {
   $.post("/logout", token).then(function(res) {
     console.log(res.message);
   });
+});
+
+// Handle dynamic tabs
+// Admin
+$(document).on("click", ".tab", function() {
+  if ($(this).text() === "Approved") {
+    updateTab("#approvedUsers", "#approvedTab");
+  } else if ($(this).text() === "Rejected") {
+    updateTab("#rejectedUsers", "#rejectedTab");
+  } else {
+    updateTab("#reviewUsers", "#reviewTab");
+  }
+});
+
+// Tab logic
+function updateTab(tab, activeTab) {
+  $(".activeTab")
+    .removeClass(
+      "border-l border-t border-r rounded-t activeTab text-purple-700"
+    )
+    .addClass("text-purple-500");
+  $(".active")
+    .addClass("hidden")
+    .removeClass("active");
+  $(tab)
+    .toggleClass("hidden")
+    .addClass("active");
+  $(activeTab)
+    .removeClass("text-purple-500")
+    .addClass("border-l border-t border-r rounded-t activeTab text-purple-700");
+}
+
+$(document).on("click", ".actionProfile", function() {
+  var action = {
+    userID: $(this).data("user"),
+    action: $(this).data("outcome")
+  };
+
+  $.post("/admin", action).then(location.reload());
 });
