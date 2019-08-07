@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         // allowNull: true
       },
       event_description: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
         // allowNull: false
       },
       event_image: {

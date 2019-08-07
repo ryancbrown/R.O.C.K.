@@ -32,6 +32,8 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
+//Display Landing handlebar
+// app.get("/", (req, res) => res.render("index", { layout: "landing" }));
 
 //Events routes
 app.use("/events", require("./routes/htmlRoutes"));

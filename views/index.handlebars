@@ -1,59 +1,216 @@
-{{!-- this needs to be changed from Bootstrap to TailwindCSS --}}
-{{!-- this will be the home page --}}
-<div class="container mx-auto">
+<!--Hero-->
+<div class="pt-24">
 
-  {{!-- add images to the carousel --}}
-      <div class="w-full carousel relative shadow-2xl bg-white mb-3">
-        <div class="carousel-inner relative overflow-hidden w-full">
-          <!--Slide 1-->
-          <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
-          <div class="carousel-item absolute opacity-0" style="height:50vh;">
-            <div class="block h-full w-full bg-indigo-500 text-white text-5xl text-center">Slide 1</div>
-          </div>
-          
-          <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-          
-          <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-          
-          <!--Slide 2-->
-          
-          <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-          <div class="carousel-item absolute opacity-0" style="height:50vh;">
-            <div class="block h-full w-full bg-orange-500 text-white text-5xl text-center">Slide 2</div>
-          </div>
-          
-          <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-          
-          <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label> 
-          
-          <!--Slide 3-->
-          <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-          <div class="carousel-item absolute opacity-0" style="height:50vh;">
-            <div class="block h-full w-full bg-green-500 text-white text-5xl text-center">Slide 3</div>
-          </div>
-          
-          <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-          
-          <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-          
-            <!-- Add additional indicators for each slide-->
-            <ol class="carousel-indicators">
-              <li class="inline-block mr-3">
-                <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
-              </li>
-              <li class="inline-block mr-3">
-                <label for="carousel-2" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
-              </li>
-              <li class="inline-block mr-3">
-                <label for="carousel-3" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
-              </li>
-            </ol>
-        </div>
-    </div>
-{{!-- add an about section --}}
-{{!-- add 3 cards on the same row: one card for FEATURED ARTIST, FEATURED MUSIC, & FEATURED ART EVENT--}}
-{{!-- add a create an event? learn more section --}}
-{{!-- add a become an artist in our database? learn more section --}}
+	<div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+		<!--Left Col-->
+		<div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+			<p class="uppercase tracking-loose w-full">Bringing Local Aritsts And You Together</p>
+			<h1 class="my-4 text-5xl font-bold leading-tight">Connecting artists to their audiences.</h1>
+			<p class="leading-normal text-2xl mb-8">Our hope is for the app to bridge the gap in accessibility of music and fine arts to marginalized groups. It also serves as a way for local artists to become recognized.</p>			
+
+			<button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg" id="createLogin">New? Register Here!</button>
+			
+		</div>
+		<!--Right Col-->
+		<div class="w-full md:w-3/5 py-6 text-center">
+			<img class="w-full md:w-4/5 z-50" src="images/vectorgirl.png" alt="tree with rainbow music notes">
+		</div>
+		
+	</div>
 
 </div>
+
+
+<div class="relative -mt-12 lg:-mt-24">
+	<svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+	<g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
+	<path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
+	<path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
+	<path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" id="Path-4" opacity="0.200000003"></path>
+	</g>
+	<g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
+	<path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
+	</g>
+	</g>
+	</svg>
+</div>
+
+
+
+<section class="bg-white border-b py-8">
+	{{!-- <div class="container max-w-5xl mx-auto m-8">
+		<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Title</h1>
+		<div class="w-full mb-4">	
+			<div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+		</div>
+	
+		<div class="flex flex-wrap">
+			<div class="w-5/6 sm:w-1/2 p-6">
+				<h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Having trouble planning an event?</h3>
+				<p class="text-gray-600 mb-8">Use our artist database to find the perfect artist for your event!<br /><br />
+				
+				Images from: <a class="text-orange-500 underline" href="https://undraw.co/">undraw.co</a></p>
+				
+			</div> --}}
+			<div class="w-full sm:w-1/2 p-6">
+	<svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+	<g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
+	<path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
+	<path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
+	<path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" id="Path-4" opacity="0.200000003"></path>
+	</g>
+	<g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
+	<path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
+	</g>
+	</g>
+	</svg>
+</div>
+
+
+
+<section class="bg-white border-b py-8">
+	<div class="container max-w-5xl mx-auto m-8">
+		<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">What we're about</h1>
+		<div class="w-full mb-4">	
+			<div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+		</div>
+	
+		<div class="flex flex-wrap">
+			<div class="w-5/6 sm:w-1/2 p-6">
+				<h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Planning an event?</h3>
+				<p class="text-gray-600 mb-8">Use our database to find the perfect featured artist! We have an ever-growing list of great, local artists -- performance artists, musicans, and visual artists. They list their prices and you can contact them straight from our <a href="" target="_blank">artists database</a>.<br /><br />
+				
+				{{!-- Images from: <a class="text-orange-500 underline" href="https://undraw.co/">undraw.co</a></p> --}}
+				
+			</div>
+      {{!-- girl planning the event -- wondering what to do  --}}
+			<div class="w-full sm:w-1/2 p-6">
+      <svg class="w-full sm:h-64 mx-auto" viewBox="0 0 1177 598.5" xmlns="http://www.w3.org/2000/svg"><title>urban_design</title><circle cx="209.62933" cy="318.19554" r="55.04156" fill="#ff6584"/><path d="M690.03184,466.56673c0,108.36448-64.421,146.20131-143.88825,146.20131S402.25533,574.93121,402.25533,466.56673,546.14359,220.34552,546.14359,220.34552,690.03184,358.20224,690.03184,466.56673Z" transform="translate(-139.41207 -86.04886)" fill="#6c63ff"/><polygon points="401.49 510.143 402.963 419.451 464.292 307.253 403.194 405.225 403.857 364.446 446.124 283.272 404.032 353.655 404.032 353.655 405.224 280.313 450.485 215.688 405.411 268.78 406.155 134.297 401.477 312.328 401.862 304.984 355.844 234.547 401.124 319.082 396.836 400.993 396.708 398.819 343.659 324.694 396.548 406.499 396.011 416.743 395.915 416.897 395.959 417.738 385.081 625.552 399.615 625.552 401.359 518.212 454.118 436.607 401.49 510.143" fill="#3f3d56"/><path d="M828.86406,568.91749c0,108.36448-64.421,146.20131-143.88826,146.20131S541.08755,677.282,541.08755,568.91749,684.9758,322.69628,684.9758,322.69628,828.86406,460.553,828.86406,568.91749Z" transform="translate(-139.41207 -86.04886)" fill="#3f3d56"/><polygon points="540.322 612.493 541.796 521.802 603.124 409.604 542.027 507.575 542.689 466.797 584.957 385.623 542.864 456.005 542.864 456.006 544.056 382.663 589.317 318.039 544.243 371.131 544.988 236.647 540.309 414.679 540.694 407.335 494.676 336.898 539.956 421.433 535.668 503.343 535.54 501.169 482.491 427.045 535.38 508.85 534.844 519.094 534.747 519.248 534.791 520.089 523.913 727.902 538.447 727.902 540.191 620.562 592.95 538.958 540.322 612.493" fill="#f2f2f2"/><path d="M558.29324,568.91749c0,108.36448-64.421,146.20131-143.88826,146.20131S270.51673,677.282,270.51673,568.91749,414.405,322.69628,414.405,322.69628,558.29324,460.553,558.29324,568.91749Z" transform="translate(-139.41207 -86.04886)" fill="#3f3d56"/><polygon points="269.751 612.493 271.225 521.802 332.554 409.604 271.456 507.575 272.118 466.797 314.386 385.623 272.294 456.005 272.294 456.006 273.485 382.663 318.746 318.039 273.672 371.131 274.417 236.647 269.739 414.679 270.123 407.335 224.106 336.898 269.385 421.433 265.097 503.343 264.97 501.169 211.92 427.045 264.809 508.85 264.273 519.094 264.177 519.248 264.221 520.089 253.342 727.902 267.876 727.902 269.62 620.562 322.38 538.958 269.751 612.493" fill="#f2f2f2"/><path d="M549.80682,813.03539a297.461,297.461,0,1,1,210.33569-87.12431A295.51307,295.51307,0,0,1,549.80682,813.03539Zm0-592.64986c-162.76768,0-295.18931,132.42108-295.18931,295.18931S387.03914,810.7647,549.80682,810.7647,844.99613,678.34307,844.99613,515.57484,712.5745,220.38553,549.80682,220.38553Z" transform="translate(-139.41207 -86.04886)" fill="#2f2e41"/><polygon points="653.626 599.234 653.626 725.905 167.207 725.905 167.207 599.234 410.416 472.562 410.923 472.825 653.626 599.234" fill="#f2f2f2"/><polygon points="653.626 599.234 653.626 725.905 410.923 725.905 410.923 472.825 653.626 599.234" opacity="0.1"/><polygon points="389.642 550.085 371.402 556.972 371.402 529.818 389.642 521.823 389.642 550.085" fill="#3f3d56"/><polygon points="187.981 626.088 181.901 628.387 181.901 611.901 187.981 609.213 187.981 626.088" fill="#3f3d56"/><polygon points="209.262 618.994 202.168 621.653 202.168 603.794 209.262 600.68 209.262 618.994" fill="#3f3d56"/><polygon points="232.569 609.874 224.462 612.923 224.462 593.66 232.569 590.092 232.569 609.874" fill="#3f3d56"/><polygon points="260.944 598.727 250.81 602.552 250.81 582.513 260.944 578.067 260.944 598.727" fill="#3f3d56"/><polygon points="295.398 585.553 283.238 590.149 283.238 568.326 295.398 562.992 295.398 585.553" fill="#3f3d56"/><polygon points="336.947 570.352 322.76 575.697 322.76 551.098 336.947 544.879 336.947 570.352" fill="#3f3d56"/><polygon points="187.981 659.529 181.901 661.058 181.901 644.329 187.981 642.406 187.981 659.529" fill="#3f3d56"/><polygon points="209.262 654.463 202.168 656.239 202.168 638.249 209.262 636.013 209.262 654.463" fill="#3f3d56"/><polygon points="232.569 648.382 224.462 650.419 224.462 631.155 232.569 628.598 232.569 648.382" fill="#3f3d56"/><polygon points="260.944 641.289 250.81 643.834 250.81 623.048 260.944 619.859 260.944 641.289" fill="#3f3d56"/><polygon points="295.398 632.168 283.238 635.237 283.238 612.914 295.398 609.089 295.398 632.168" fill="#3f3d56"/><polygon points="336.947 622.035 321.746 625.858 321.746 600.754 336.947 595.971 336.947 622.035" fill="#3f3d56"/><polygon points="389.642 608.861 371.402 613.446 371.402 585.553 389.642 579.831 389.642 608.861" fill="#3f3d56"/><polygon points="389.642 666.623 371.402 668.945 371.402 641.289 389.642 637.839 389.642 666.623" fill="#3f3d56"/><polygon points="187.981 691.957 181.901 692.739 181.901 676.757 187.981 675.598 187.981 691.957" fill="#3f3d56"/><polygon points="209.262 689.931 202.168 690.825 202.168 673.717 209.262 672.386 209.262 689.931" fill="#3f3d56"/><polygon points="232.569 686.89 224.462 687.916 224.462 668.65 232.569 667.105 232.569 686.89" fill="#3f3d56"/><polygon points="260.944 682.837 250.81 684.132 250.81 663.583 260.944 661.65 260.944 682.837" fill="#3f3d56"/><polygon points="295.398 678.783 283.238 680.326 283.238 657.503 295.398 655.187 295.398 678.783" fill="#3f3d56"/><polygon points="336.947 673.717 321.746 675.638 321.746 650.409 336.947 647.524 336.947 673.717" fill="#3f3d56"/><polygon points="633.865 626.088 639.946 628.387 639.946 611.901 633.865 609.213 633.865 626.088" fill="#3f3d56"/><polygon points="612.584 618.994 619.678 621.653 619.678 603.794 612.584 600.68 612.584 618.994" fill="#3f3d56"/><polygon points="589.277 609.874 597.384 612.923 597.384 593.66 589.277 590.092 589.277 609.874" fill="#3f3d56"/><polygon points="560.902 598.727 571.036 602.552 571.036 582.513 560.902 578.067 560.902 598.727" fill="#3f3d56"/><polygon points="526.448 585.553 538.608 590.149 538.608 568.326 526.448 562.992 526.448 585.553" fill="#3f3d56"/><polygon points="484.899 570.352 499.087 575.697 499.087 551.098 484.899 544.879 484.899 570.352" fill="#3f3d56"/><polygon points="633.865 659.529 639.946 661.058 639.946 644.329 633.865 642.406 633.865 659.529" fill="#3f3d56"/><polygon points="612.584 654.463 619.678 656.239 619.678 638.249 612.584 636.013 612.584 654.463" fill="#3f3d56"/><polygon points="589.277 648.382 597.384 650.419 597.384 631.155 589.277 628.598 589.277 648.382" fill="#3f3d56"/><polygon points="560.902 641.289 571.036 643.834 571.036 623.048 560.902 619.859 560.902 641.289" fill="#3f3d56"/><polygon points="526.448 632.168 538.608 635.237 538.608 612.914 526.448 609.089 526.448 632.168" fill="#3f3d56"/><polygon points="484.899 622.035 500.1 625.858 500.1 600.754 484.899 595.971 484.899 622.035" fill="#3f3d56"/><polygon points="432.204 608.861 450.445 613.446 450.445 585.553 432.204 579.831 432.204 608.861" fill="#3f3d56"/><polygon points="432.204 666.623 450.445 668.945 450.445 641.289 432.204 637.839 432.204 666.623" fill="#3f3d56"/><polygon points="633.865 691.957 639.946 692.739 639.946 676.757 633.865 675.598 633.865 691.957" fill="#3f3d56"/><polygon points="612.584 689.931 619.678 690.825 619.678 673.717 612.584 672.386 612.584 689.931" fill="#3f3d56"/><polygon points="589.277 686.89 597.384 687.916 597.384 668.65 589.277 667.105 589.277 686.89" fill="#3f3d56"/><polygon points="560.902 682.837 571.036 684.132 571.036 663.583 560.902 661.65 560.902 682.837" fill="#3f3d56"/><polygon points="526.448 678.783 538.608 680.326 538.608 657.503 526.448 655.187 526.448 678.783" fill="#3f3d56"/><polygon points="484.899 673.717 500.1 675.638 500.1 650.409 484.899 647.524 484.899 673.717" fill="#3f3d56"/><polygon points="449.431 557.179 431.191 550.3 431.191 521.711 449.431 529.709 449.431 557.179" fill="#3f3d56"/><rect x="619.22047" y="703.34943" width="1.48683" height="23.78929" fill="#2f2e41"/><rect x="637.17106" y="709.82471" width="1.05356" height="16.8569" fill="#2f2e41"/><rect x="652.86574" y="711.88336" width="0.92596" height="14.81543" fill="#2f2e41"/><polygon points="577.116 695.808 577.116 726.412 557.356 726.382 537.595 726.351 537.595 691.957 557.356 693.883 577.116 695.808" fill="#3f3d56"/><polygon points="244.73 726.412 284.251 726.349 284.251 691.957 244.73 695.804 244.73 726.412" fill="#3f3d56"/><rect y="725.39869" width="885.5" height="2.02675" fill="#2f2e41"/><polygon points="577.116 695.808 577.116 726.412 557.356 726.382 557.356 693.883 577.116 695.808" opacity="0.1"/><rect x="406.36292" y="698.54429" width="2.02675" height="28.37447" fill="#2f2e41"/><path d="M558.4842,774.49149c0,9.94289-5.31121,18.24029-11.69584,18.52532-6.20727.27711-11.11411-7.16322-11.11411-16.61156s12.12748-35.38718,12.12748-35.38718S558.4842,764.54861,558.4842,774.49149Z" transform="translate(-139.41207 -86.04886)" fill="#6c63ff"/><rect x="168.74636" y="707.63783" width="1.2089" height="16.92457" fill="#2f2e41"/><path d="M315.73912,787.66134c0,5.93065-3.168,10.87982-6.97624,11.04983-3.70246.16529-6.62926-4.27266-6.62926-9.90832s7.2337-21.10746,7.2337-21.10746S315.73912,781.73069,315.73912,787.66134Z" transform="translate(-139.41207 -86.04886)" fill="#6c63ff"/><path d="M767.55352,790.3367c0,5.64038-3.55458,10.04606-8.17757,9.82918-4.909-.2303-9.117-5.52544-9.117-11.81381s9.117-21.99966,9.117-21.99966S767.55352,784.69631,767.55352,790.3367Z" transform="translate(-139.41207 -86.04886)" fill="#6c63ff"/><path d="M782.90447,796.53852c0,3.99673-2.51875,7.11856-5.79456,6.96488-3.47844-.16319-6.46025-3.91528-6.46025-8.37117s6.46025-15.58878,6.46025-15.58878S782.90447,792.54179,782.90447,796.53852Z" transform="translate(-139.41207 -86.04886)" fill="#6c63ff"/><path d="M797.83359,798.51664c0,3.5127-2.21371,6.25645-5.09281,6.12139-3.05718-.14343-5.67787-3.44112-5.67787-7.35737s5.67787-13.70089,5.67787-13.70089S797.83359,795.00393,797.83359,798.51664Z" transform="translate(-139.41207 -86.04886)" fill="#6c63ff"/><path d="M805.03008,249.29959s-9.86369,29.59108-4.38386,36.16687-32.879-19.72738-32.879-19.72738l20.82335-24.11125Z" transform="translate(-139.41207 -86.04886)" fill="#a0616a"/><circle cx="643.12413" cy="113.99581" r="49.20683" fill="#2f2e41"/><polygon points="834.397 496.424 809.19 516.152 794.942 493.136 820.149 475.601 834.397 496.424" fill="#a0616a"/><path d="M938.18993,730.97658l6.57579,31.783,18.63142,25.20722s50.41443,15.34352,16.43949,23.01528-41.6467-5.47983-41.6467-5.47983L914.07868,784.6789V813.174H898.73516l-3.2879-40.55073s-2.19193-12.05563,7.67176-25.20722l2.19193-19.72738Z" transform="translate(-139.41207 -86.04886)" fill="#2f2e41"/><path d="M811.05789,337.52484l8.76773,50.41443s93.15709-9.86369,99.73289,8.76772,8.76773,24.11125,8.76773,24.11125l-18.63142,6.5758-8.76773-16.43949a20.81584,20.81584,0,0,0-16.43949,1.096c-8.76772,4.38386-85.48533,15.34352-90.96516,1.096s-20.82335-66.85391-20.82335-66.85391l23.01528-18.63142Z" transform="translate(-139.41207 -86.04886)" fill="#a0616a"/><path d="M811.05789,337.52484l8.76773,50.41443s93.15709-9.86369,99.73289,8.76772,8.76773,24.11125,8.76773,24.11125l-18.63142,6.5758-8.76773-16.43949a20.81584,20.81584,0,0,0-16.43949,1.096c-8.76772,4.38386-85.48533,15.34352-90.96516,1.096s-20.82335-66.85391-20.82335-66.85391l23.01528-18.63142Z" transform="translate(-139.41207 -86.04886)" opacity="0.1"/><path d="M862.56829,483.2883l7.67176,26.30318,19.72738,100.82885s2.19193,74.52568,5.47983,83.29341,3.2879,9.86369,0,13.15159-9.86369,14.24755,0,20.82335,44.9346,14.24755,46.03057,6.57579,1.096-19.72738,0-25.20721,3.28789-90.96517,3.28789-90.96517L931.61413,487.67216l-44.9346-20.82335Z" transform="translate(-139.41207 -86.04886)" fill="#2f2e41"/><path d="M862.56829,483.2883l7.67176,26.30318,19.72738,100.82885s2.19193,74.52568,5.47983,83.29341,3.2879,9.86369,0,13.15159-9.86369,14.24755,0,20.82335,44.9346,14.24755,46.03057,6.57579,1.096-19.72738,0-25.20721,3.28789-90.96517,3.28789-90.96517L931.61413,487.67216l-44.9346-20.82335Z" transform="translate(-139.41207 -86.04886)" opacity="0.1"/><path d="M909.69482,380.26751l24.11125,46.03056s138.09169,61.37409,126.03607,86.5813-78.90954,72.33375-78.90954,72.33375-3.2879,18.63142-13.15159,13.15159-33.97494-33.97494-31.783-37.26284,9.86369-10.95966,13.15159-9.86369,41.6467-28.49511,41.6467-28.49511l-65.758-16.43949s-78.90954-2.19193-83.29341-39.45477,0-43.83863,0-43.83863l-5.47982-12.05563L881.1997,383.5554Z" transform="translate(-139.41207 -86.04886)" fill="#2f2e41"/><path d="M943.66976,562.19784l-23.01528,20.82335s-19.72739-8.76773-31.783-5.47983-32.879,5.47983-32.879,5.47983l3.2879,18.63142,27.96228-5.15881-22.48245,31.462s0,49.31846,14.24755,49.31846,9.8637-29.59108,9.8637-29.59108l43.83863-33.97494s21.91932-8.76773,24.11125-8.76773S943.66976,562.19784,943.66976,562.19784Z" transform="translate(-139.41207 -86.04886)" fill="#2f2e41"/><circle cx="661.23415" cy="134.75562" r="37.26284" fill="#a0616a"/><path d="M763.93136,249.84757s17.53545-4.38386,23.01528,0,6.5758,14.24756,14.24756,15.34352,14.24755,1.096,15.34352,2.19194,26.30318,31.783,26.30318,31.783,15.34352,8.76772,18.63142,20.82335,36.16687,52.60636,40.55074,56.99022-28.49512,26.30318-39.45477,33.97494-42.74267,10.95966-52.60636-6.57579S746.39591,272.86286,763.93136,249.84757Z" transform="translate(-139.41207 -86.04886)" fill="#575a89"/><path d="M805.57806,321.08535l8.76773,50.41443s93.1571-9.86369,99.73289,8.76773,8.76773,24.11125,8.76773,24.11125L904.215,410.95455l-8.76773-16.43949a20.81589,20.81589,0,0,0-16.43949,1.096c-8.76772,4.38386-85.48533,15.34352-90.96516,1.096s-20.82335-66.85391-20.82335-66.85391l23.01528-18.63142Z" transform="translate(-139.41207 -86.04886)" fill="#a0616a"/><path d="M784.63435,254.45864s26.42354,55.66705,24.23161,71.01058-9.86369,4.38386-9.86369,4.38386-9.8637-15.34352-14.24756-6.5758-9.86369,20.82335-14.24755,19.72739-28.49512-82.19744-15.34353-89.8692S784.63435,254.45864,784.63435,254.45864Z" transform="translate(-139.41207 -86.04886)" fill="#575a89"/><circle cx="589.81674" cy="49.20683" r="49.20683" fill="#2f2e41"/><path d="M686.78529,176.0021a49.2095,49.2095,0,0,0,75.98837-25.83768,49.20954,49.20954,0,1,1-95.98926-20.17936A49.19136,49.19136,0,0,0,686.78529,176.0021Z" transform="translate(-139.41207 -86.04886)" fill="#2f2e41"/><circle cx="633.00232" cy="122.19694" r="36.08501" fill="#2f2e41"/><ellipse cx="660.34652" cy="108.66504" rx="31.98443" ry="25.01347" fill="#2f2e41"/><ellipse cx="661.78213" cy="138.5915" rx="7.12378" ry="12.60361" fill="#a0616a"/><path d="M898.9811,410.47561s19.4016-11.13122,23.00341-8.34005,5.20206,11.52529,5.20206,11.52529l-22.4236,8.80134-6.57579-12.05562Z" transform="translate(-139.41207 -86.04886)" fill="#2f2e41"/></svg>
+			</div>
+		</div>
+		
+		
+		<div class="flex flex-wrap flex-col-reverse sm:flex-row">	
+			<div class="w-full sm:w-1/2 p-6 mt-6">
+				<svg class="w-5/6 sm:h-64 mx-auto" viewBox="0 0 1176.60617 873.97852" xmlns="http://www.w3.org/2000/svg"><title>feeling_of_joy</title><ellipse cx="455" cy="571.2838" rx="455" ry="23" fill="#3f3d56"/><ellipse cx="899.33839" cy="610.42241" rx="178.04348" ry="9" fill="#3f3d56"/><ellipse cx="396.05573" cy="633.2838" rx="178.04348" ry="9" fill="#3f3d56"/><circle cx="393.38066" cy="612.49115" r="21.92017" fill="#6c63ff"/><circle cx="641.5315" cy="538.57706" r="31.2479" fill="#6c63ff"/><circle cx="925.70604" cy="594.23669" r="21.92017" fill="#6c63ff"/><circle cx="475.18998" cy="51.5061" r="14.76696" fill="#2f2e41"/><path d="M520.17767,176.47816a14.76752,14.76752,0,0,1,13.21254-14.68394,14.767,14.767,0,1,0,0,29.36788A14.76752,14.76752,0,0,1,520.17767,176.47816Z" transform="translate(-61.30906 -128.8581)" fill="#2f2e41"/><path d="M564.74538,198.53124c-10.32289-17.44249-30.7459-18.25539-30.7459-18.25539s-19.90106-2.54493-32.66747,24.0202c-11.89931,24.76088-28.32187,48.668-2.6439,54.46436l4.63819-14.43612,2.8724,15.51087a100.47184,100.47184,0,0,0,10.98665.18777c27.499-.88783,53.68771.25975,52.84448-9.60806C568.90889,237.297,574.67807,215.3144,564.74538,198.53124Z" transform="translate(-61.30906 -128.8581)" fill="#2f2e41"/><path d="M516.77031,231.74406s8.4339,31.86139,0,35.60979-14.05649,6.55969-14.05649,6.55969l9.371,36.54689,18.742,20.61619L554.25429,306.712l9.371-29.05009V265.47965s-18.742-2.8113-17.80489-14.9936a73.74529,73.74529,0,0,0-1.8742-22.49038Z" transform="translate(-61.30906 -128.8581)" fill="#a0616a"/><path d="M492.40572,277.66194s-11.24519,0-11.24519,6.5597,2.8113,64.65987,2.8113,64.65987l-30.2452,76.339s-14.99359,30.92428-3.74839,31.86138,12.18229-29.98719,12.18229-29.98719L504.588,362.938Z" transform="translate(-61.30906 -128.8581)" fill="#a0616a"/><path d="M572.05919,269.22805s11.24519,0,11.24519,6.55969-2.8113,64.65987-2.8113,64.65987l11.2452,84.339s14.99359,30.92428,3.74839,31.86138-12.18229-29.98718-12.18229-29.98718L559.87689,354.5041Z" transform="translate(-61.30906 -128.8581)" fill="#a0616a"/><path d="M504.588,371.3719S491.46863,381.68,486.78313,424.78657s-74.968,231.46359-42.16948,245.52008,74.03086,27.17589,78.71636,8.4339,13.11939-225.841,13.11939-225.841-17.80489,223.02969,4.6855,225.841,59.03727,7.49679,63.72277-7.4968-11.51083-284.87826-32.46275-296.12346S504.588,371.3719,504.588,371.3719Z" transform="translate(-61.30906 -128.8581)" fill="#2f2e41"/><polygon points="389.864 538.637 378.619 559.253 380.493 577.058 403.921 567.687 407.669 544.26 389.864 538.637" fill="#2f2e41"/><polygon points="498.568 535.826 509.813 556.442 507.939 574.247 484.511 564.876 480.763 541.449 498.568 535.826" fill="#2f2e41"/><circle cx="472.79759" cy="92.10932" r="26.23879" fill="#a0616a"/><path d="M534.5752,311.39752l-29.05008-41.23238-18.742,6.5597s-.9371,12.1823,2.8113,23.42749,1.8742,23.42749,6.55969,34.67268-5.62259,24.36459-1.8742,28.113,5.6226,11.24519,2.8113,14.05649,37.484-7.49679,48.72918-1.8742,29.05008,5.6226,29.05008.9371-4.68549-12.18229-1.87419-17.80489-5.6226-20.61619-5.6226-20.61619L579.556,270.16514s-9.371-7.49679-11.24519-7.49679-7.96535,2.0828-7.96535,2.0828Z" transform="translate(-61.30906 -128.8581)" fill="#2f2e41"/><polygon points="498.872 67.992 478.695 57.423 450.832 61.746 445.067 87.208 459.418 86.656 463.427 77.302 463.427 86.502 470.048 86.247 473.891 71.355 476.293 87.208 499.833 86.727 498.872 67.992" fill="#2f2e41"/><rect x="775.39107" y="384.67872" width="98" height="98" transform="matrix(0.1103, 0.9939, -0.9939, 0.1103, 1103.18479, -562.37483)" fill="#f2f2f2"/><path d="M768.5708,499.55814a22,22,0,1,1,30.75738,4.68865A22.02489,22.02489,0,0,1,768.5708,499.55814Zm33.83484-24.88379a20,20,0,1,0-4.2624,27.96125A20.02228,20.02228,0,0,0,802.40564,474.67435Z" transform="translate(-61.30906 -128.8581)" fill="#3f3d56"/><rect x="360" y="142.16988" width="10" height="346" transform="translate(-176.60868 143.07604) rotate(-35.66612)" fill="#3f3d56"/><rect x="208.43492" y="182.73717" width="235" height="156" transform="translate(-152.1986 110.08869) rotate(-35.66612)" fill="#3f3d56"/><ellipse cx="353.92184" cy="299.73374" rx="38" ry="10" transform="translate(-169.68642 133.72142) rotate(-35.66612)" opacity="0.1"/><circle cx="264.62585" cy="131.87908" r="48" fill="#6c63ff"/><path d="M356.13838,251.36963c3.22016,4.48692-2.04186,23.62119-15.50261,33.28166s-30.02294,6.18891-33.2431,1.702,8.12112-8.2901,21.58188-17.95057S352.91823,246.88271,356.13838,251.36963Z" transform="translate(-61.30906 -128.8581)" fill="#f2f2f2"/><circle cx="236.84039" cy="130.89513" r="10" fill="#f2f2f2"/><circle cx="270.96239" cy="106.40657" r="10" fill="#f2f2f2"/><circle cx="236.84039" cy="130.89513" r="4" fill="#3f3d56"/><circle cx="270.96239" cy="106.40657" r="4" fill="#3f3d56"/><path d="M136.634,654.738c12.42842,23.049,38.806,32.9435,38.806,32.9435s6.22712-27.47542-6.2013-50.52447-38.806-32.94351-38.806-32.94351S124.20559,631.68891,136.634,654.738Z" transform="translate(-61.30906 -128.8581)" fill="#2f2e41"/><path d="M145.17653,647.155c22.43841,13.49969,31.08016,40.3138,31.08016,40.3138s-27.73812,4.92678-50.17653-8.57291S95,638.58208,95,638.58208,122.73811,633.65529,145.17653,647.155Z" transform="translate(-61.30906 -128.8581)" fill="#6c63ff"/></svg>
+			</div>
+			<div class="w-full sm:w-1/2 p-6 mt-6">
+				<div class="align-middle">
+					<h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Happy artists, happy audience!</h3>
+					<p class="text-gray-600 mb-8">Every artist has an audience, and we're here to connect the two. Our <a href="/events" target="_blank">list of events</a> highlight local New York City artists, specifically Artists of Color, LGBTQ, and gender nonconfirming.<br /><br />
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+		
+		
+		
+		
+{{!-- featured section that STILL NEEDS TO BE UPDATED --}}
+<section class="bg-white border-b py-8">
+	
+	<div class="container mx-auto flex flex-wrap pt-4 pb-12">
+	
+		<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Featured!</h1>
+		<div class="w-full mb-4">	
+			<div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+		</div>
+	
+		<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+			<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+				<a href="#" class="flex flex-wrap no-underline hover:no-underline">
+					<p class="w-full text-gray-600 text-xs md:text-sm px-6">xMUSIC EVENT</p>
+					<div class="w-full font-bold text-xl text-gray-800 px-6">DUMMY EVENT.</div>
+					<p class="text-gray-800 text-base px-6 mb-5">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula. 
+					</p>
+				</a>
+			</div>
+			<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+				<div class="flex items-center justify-start">
+          {{!-- need to link out to that event --}}
+					<button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+			<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+				<a href="#" class="flex flex-wrap no-underline hover:no-underline">
+					<p class="w-full text-gray-600 text-xs md:text-sm px-6">xARTIST</p>
+					<div class="w-full font-bold text-xl text-gray-800 px-6">DUMMY NAME.</div>
+					<p class="text-gray-800 text-base px-6 mb-5">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula. 
+					</p>
+				</a>
+			</div>
+			<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+				<div class="flex items-center justify-center">
+          {{!-- need to link out to the dummy name --}}
+					<button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+			<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+				<a href="#" class="flex flex-wrap no-underline hover:no-underline">
+					<p class="w-full text-gray-600 text-xs md:text-sm px-6">xART EVENT</p>
+					<div class="w-full font-bold text-xl text-gray-800 px-6">DUMMY ART TITLE</div>
+					<p class="text-gray-800 text-base px-6 mb-5">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula. 
+					</p>
+				</a>
+			</div>
+			<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+				<div class="flex items-center justify-end">
+          {{!-- link out to art event --}}
+					<button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+
+</section>
+
+<!-- Change the colour #f8fafc to match the previous section colour -->
+<svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+		<g transform="translate(-1.000000, -14.000000)" fill-rule="nonzero">
+			<g class="wave" fill="#f8fafc">
+				<path d="M1440,84 C1383.555,64.3 1342.555,51.3 1317,45 C1259.5,30.824 1206.707,25.526 1169,22 C1129.711,18.326 1044.426,18.475 980,22 C954.25,23.409 922.25,26.742 884,32 C845.122,37.787 818.455,42.121 804,45 C776.833,50.41 728.136,61.77 713,65 C660.023,76.309 621.544,87.729 584,94 C517.525,105.104 484.525,106.438 429,108 C379.49,106.484 342.823,104.484 319,102 C278.571,97.783 231.737,88.736 205,84 C154.629,75.076 86.296,57.743 0,32 L0,0 L1440,0 L1440,84 Z"></path>
+			</g>
+			<g transform="translate(1.000000, 15.000000)" fill="#FFFFFF">
+				<g transform="translate(719.500000, 68.500000) rotate(-180.000000) translate(-719.500000, -68.500000) ">
+					<path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
+					<path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
+					<path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" opacity="0.200000003"></path>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>
+
+<section class="container mx-auto text-center py-6 mb-12">
+
+	<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-white">IDK TEXT HERE FOR SOMETHING</h1>
+	<div class="w-full mb-4">	
+		<div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
+	</div>
+
+	<h3 class="my-4 text-3xl leading-tight">Main Hero Message to sell yourself!</h3>	
+
+	<button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action!</button>
+		
+</section>
 
