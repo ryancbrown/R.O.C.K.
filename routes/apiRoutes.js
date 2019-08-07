@@ -3,8 +3,9 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all events
   app.get("/events", function(req, res) {
-    db.Events.findAll({}).then(function() {
-      res.render("events");
+    db.Events.findAll({}).then(function(dbEvents) {
+      // console.log(dbEvents);
+      res.render("events", { events: dbEvents });
     });
   });
 
@@ -23,6 +24,7 @@ module.exports = function(app) {
   });
 
   // Delete an events by id
+  //not in use
   app.delete("/api/events/:id", function(req, res) {
     db.Events.destroy({ where: { id: req.params.id } }).then(function(
       dbEvents

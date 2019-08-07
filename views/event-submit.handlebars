@@ -1,8 +1,8 @@
 {{!-- event inupt page --}}
-<div class="container mx-auto">
+<div class="container mx-auto m-3">
     <div class="flex mb-4">
         <!-- Content --> 
-        <div class="w-4/6 mt-5 rounded-tl-lg">
+        <div class="w-4/6 m-5 rounded-tl-lg">
             <div class="w-full text-2xl pb-5">
                 <h2>Submit an Event</h2>
             </div>
@@ -42,6 +42,7 @@
                         </div>                   
                     </div>
                 </div>
+            </div>
 
             <div class="flex pb-2">
                 <div class="w-1/6 pr-2">
@@ -69,7 +70,20 @@
                 </div>
             </div>
 
-                        <div class="flex pb-2">
+            <div class="flex pb-2">
+                <div class="w-1/6 pr-2">
+                    <label> 
+                        Image to promote event 
+                    </label>
+                </div>
+                <div class="w-5/6 pr-5">
+                    <div class="flex">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventImage" type="text" placeholder="https://greatesteventever.com/image.png">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex pb-2">
                 <div class="w-1/6 pr-2">
                     <label> 
                        Event Date 
@@ -90,10 +104,24 @@
                 </div>
                 <div class="w-5/6 pr-5">
                     <div class="flex">
-                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventPrice" type="text" placeholder="$20">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventPrice" type="text" placeholder="20.50">
                     </div>
                 </div>
             </div>
+
+            <div class="flex pb-2">
+                <div class="w-1/6 pr-2">
+                    <label> 
+                        Event Description
+                    </label>
+                </div>
+                <div class="w-5/6 pr-5">
+                    <div class="flex">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventDescription" type="text" placeholder="This event will feature artists XXX and Mx. Mini in a live performance...">
+                    </div>
+                </div>
+            </div>
+            
 
             <div class="flex pr-1">
                 <div class="w-full py-5 mr-4">
@@ -102,8 +130,7 @@
                     </button>
                 </div>
             </div>
-        </div>
-</div>     {{!-- this may  not be in the right place --}}
+        </div>  {{!-- this may  not be in the right place --}}
 
         <!-- Sidebar -->
         <div class="w-2/6 border-top mt-5 rounded-tr-lg p-4 h-56">
@@ -118,5 +145,5 @@
                 </div>
             </div>
         </div>
-
+    </div>
 </div>

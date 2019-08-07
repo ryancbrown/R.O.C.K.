@@ -4,57 +4,45 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <title>POC ROCK</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <title>WELCOME TO POC ROCK</title>
 </head>
-<body>
-<nav class="flex items-center justify-between flex-wrap bg-white p-4 border-b-2 border-gray-300">
-  <div class="flex items-center flex-shrink-0 text-black mr-6">
-    <img src="https://i.imgur.com/36Vkw2v.png" alt="logo">
-  </div>
-  <div class="block lg:hidden">
-        <button class="flex items-center px-3 py-2 border rounded text-purple-200 border-purple-400 hover:text-white hover:border-white">
-      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-    </button>
-  </div>
-  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-    {{!-- <div class="text-sm lg:flex-grow text-right"> --}}
+<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
 
-      <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
-        <ul class="list-reset lg:flex justify-end flex-1 items-center">
-          <li class="mr-3">
-            <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="/events">Search Events</a>
-          </li>
-          <li class="mr-3">
-            <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="/event-submit">Create Events</a>
-          </li>
-          <li class="mr-3">
-            <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Organizer</a>
-            </li>
-        </ul>
+<!--Nav-->
+<nav id="header" class="fixed w-full z-30 top-0 text-white">
+
+	<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+			
+		<div class="pl-4 flex items-center">
+      <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="/" target="_blank"></a><img src="images/logo.png" alt="poc rock logo">
+			{{!-- <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="/">POC ROCK --}}
+			</a>
+		</div>
+
+{{!-- menu start here --}}
+		<div class="block lg:hidden pr-4">
+			<button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-800 hover:border-teal-500 appearance-none focus:outline-none">
+				<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+			</button>
+		</div>
+
+		<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
+			<ul class="list-reset lg:flex justify-end flex-1 items-center">
+				<li class="mr-3">
+					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="/events">Events</a>
+				</li>
+        <li class="mr-3">
+          <a class="inline-block py-2 px-4 text-black no-underline" href="/event-submit">Create Events</a>
+        </li>
+				<li class="mr-3">
+					<a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Organizer</a>
+				</li>
+			</ul>
             {{!-- need to fix log in function --}}
-        <button id="loadLogin" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Log In</button>
-      </div>
-      {{!-- <a href="/events" class="block mt-4 lg:inline-block lg:mt-0 text-purple-800 hover:text-purple-400 mr-4">
-        Events
-      </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-purple-800 hover:text-purple-400 mr-4 text-right">
-        Organizers
-      </a>
-    </div> --}}
-<!-- Search -->
-        {{!-- <div class="block py-4 mt-4 lg:inline-block lg:mt-0 lg:py-0 lg:mr-8">
-          <div class="relative">
-            <input name="q" class="w-full outline-none rounded-sm shadow appearance-none border pl-10 pr-4 py-2" placeholder="Search..." aria-label="Search Input">
-            <div class="flex items-center absolute pin-l pin-y px-3">
-            </div>
-          </div>
-        </div> --}}
-{{!-- log in feature --}}
-    {{!-- <div>
-      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-purple-800 border-purple-800 hover:border-transparent hover:text-purple-400 hover:bg-purple-800 mt-4 lg:mt-0" id="loadLogin">Log In</a>
-    </div> --}}
-  </div>
-</nav>
+			<button id="loadLogin" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Log In</button>
+		</div>
+	</div>
 
     <!-- Log into an existing account --> 
     <div class="bg-gray-200 border-b hidden flex mb-8 pt-10 pb-8" id="existingAccount">
@@ -112,16 +100,15 @@
       </div>
     </div>
 
+	
+	<hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
+</nav>
+
 
   {{{body}}}
 
-{{!-- SMALLER FOOTER --}}
-<footer class="w-full flex text-center items-center justify-between flex-wrap bg-white p-4 border-t-2 border-gray-300 text-purple-600 text-sm">
-    <p>&copy; 2019 | <a href="#" target="_blank">Terms of Service</a> | <a href="#" target="_blank">About</a> | <a href="#" target="_blank">Events</a> |<a href="#" target="_blank">Artists</a></p>
-</footer>
-
-<!--MORE COMPLEX FOOTER-->
-{{!-- <footer class="bg-white">
+<!--Footer-->
+<footer class="bg-white">
 	<div class="container mx-auto  px-8">
 
         <div class="w-full flex flex-col md:flex-row py-6">
@@ -187,8 +174,10 @@
             </div>
         </div>
     </div>
-  </footer> --}}
 	
+	{{!-- <a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by freepik - www.freepik.com</a> --}}
+
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="/js/index.js"></script>

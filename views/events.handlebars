@@ -25,26 +25,30 @@
   </form>
 </ul>
 {{!-- end of the search navbar --}}
-
 {{!-- showing the events --}}
+{{!-- {{log events}} --}}
 
     {{#each events}}
-    <div class="md:flex">
-        {{!-- image of venue -- to add the src="URL" --}}
-        <div class="md:flex-shrink-0"> 
-            <img class="rounded-lg md:w-56" src="{{event_image}}" alt="Event's venue photo">
-        </div>
-        <div class="mt-4 md:mt-0 md:ml-6">
-            <div class="uppercase tracking-wide text-sm text-purple-800 font-bold">{{event_type}}</div>
-            <a href="{{event_link}}" class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline" target="_blank">{{event_name}}/a>
-            <p class="uppercase tracking-wide text-sm text-purple-600 font-bold">Location</p>: <p>{{event_location}}</p>
-            <p class="uppercase tracking-wide text-sm text-purple-600 font-bold">Date</p>: <p>{{event_date}}</p>
-            <p class="uppercase tracking-wide text-sm text-purple-600 font-bold">Price</p>: <p>{{price}}</p>
-            {{!-- update the going to something more interesting for the attendee count --}}
-            {{!-- <p class="text-purple-600 text-center bg-gray-400 p-2">Going?</p> --}}
-        </div>
-    </div> 
-        
+
+<div class="max-w-sm w-full lg:max-w-full lg:flex m-4">
+    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{event_image}}')" title="Image of {{event_name}}">
+    </div>
+    <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+      <div class="mb-8">
+        <p class="uppercase text-sm text-purple-700 flex items-center">{{event_type}}</p>
+        <div class="text-gray-900 font-bold text-xl mb-2">{{event_name}}</div>
+        <p class="text-gray-700 text-base">{{event_description}}</p>
+      </div>
+        <div class="flex items-center">
+          <div class="text-sm">
+            <p class="text-gray-900 leading-none">DATE: {{event_date}}</p>
+            <p class="text-gray-600">LOCATION: {{event_location}}</p>
+            <p class="text-gray-600">PRICE: ${{event_price}}</p>
+          </div>
+      </div>
+    </div>
+</div>
+
         {{!-- else option if we don't have any events, it will display the below --}}
     {{else}}
         <div class="bg-purple-900 text-center py-4 lg:px-4 m-5">

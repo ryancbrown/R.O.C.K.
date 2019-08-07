@@ -4,38 +4,15 @@ var bcrypt = require("bcrypt");
 var saltRounds = 10;
 
 //dispaly events page
-module.exports = function(app) {
-  ///////////////////////////////
-  //          EVENTS          //
-  ///////////////////////////////
-  app.get("/events", function(req, res) {
-    res.render("events");
-  });
+// module.exports = function(app) {
 
-  // Load events page and pass in an events by id
-  app.get("/events", function(req, res) {
-    db.Events.findOne({ where: { route_name: req.params.routename } }).then(
-      function(Events) {
-        res.render("events", {
-          events: Events
-        });
-      }
-    );
-  });
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
-};
+// };
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Events.findAll({}).then(function(dbEvents) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbEvents
-      });
+    db.Events.findAll({}).then(function() {
+      res.render("index", { layout: "landing" });
     });
   });
 
@@ -199,6 +176,17 @@ module.exports = function(app) {
     });
   });
 
+  //single display of page
+  app.get("/events/:route", function(req, res) {
+    db.Artist.findOne({
+      where: { event_route: req.params.route }
+    }).then(function(eventsdb) {
+      res.render("events-display", {
+        eventsPage: eventsdb
+      });
+    });
+  });
+
   app.get("/profile/:routename", function(req, res) {
     db.Artist.findOne({
       where: { artist__route_name: req.params.routename }
@@ -209,6 +197,51 @@ module.exports = function(app) {
     });
   });
 
+  ///////////////////////////////
+  //          EVENTS          //
+  ///////////////////////////////
+
+  //loading the events-submit page
+  app.get("/event-submit", function(req, res) {
+    res.render("event-submit");
+  });
+
+  // Load events page and pass in an events by id
+  app.get("/events", function(req, res) {
+    db.Events.findAll({}).then(function(Events) {
+      res.send("hello");
+      // res.render("events", {
+      //   events: Events
+      // }
+      // );
+    });
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  app.post("/event-submit", function(req, res) {
+    var req = req.body; //form
+    var route = req.body.eventName;
+    route = route.replace(/\s+/g, "-").toLowerCase();
+
+    console.log("req body", req.body);
+
+    db.Events.update({
+      events_route: route,
+      event_name: req.eventName,
+      event_type: req.eventType,
+      event_date: req.eventLocation,
+      event_link: req.eventLink,
+      event_location: req.eventLocation,
+      event_description: req.eventDescription,
+      event_image: req.eventImage,
+      event_price: req.eventPrice
+    }).then(function(err, res) {
+      if (err) {
+        throw err;
+      }
+      console.log(res);
+    });
+  });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
