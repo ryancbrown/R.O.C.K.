@@ -14,10 +14,11 @@ $("#eventSubmit").on("click", function(event) {
     eventPrice: $("#eventPrice").val()
   };
 
-  console.log("form" + JSON.stringify(form));
+  console.log("form in on click" + JSON.stringify(form));
+  console.log("eventName" + JSON.stringify(eventName));
   // event submit AJAX post
   $.post("/event-submit", form).then(function(req, res) {
-    console.log(res);
+    console.log("res post index.js" + res);
   });
 });
 
@@ -164,6 +165,7 @@ document.addEventListener("scroll", function() {
   }
 });
 
+//navbar issue when console logged -- error
 var navMenuDiv = document.getElementById("nav-content");
 var navMenu = document.getElementById("nav-toggle");
 
@@ -181,9 +183,9 @@ function check(e) {
       } else {
         navMenuDiv.classList.add("hidden");
       }
-    } else {
-      // click both outside link and outside menu, hide menu
-      // navMenuDiv.classList.add("hidden");
+      // } else {
+      //   // click both outside link and outside menu, hide menu
+      //   // navMenuDiv.classList.add("hidden");
     }
   }
 }

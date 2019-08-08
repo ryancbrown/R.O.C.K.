@@ -206,40 +206,29 @@ module.exports = function(app) {
     res.render("event-submit");
   });
 
-  // Load events page and pass in an events by id
-  app.get("/events", function(req, res) {
-    db.Events.findAll({}).then(function(Events) {
-      res.send("hello");
-      // res.render("events", {
-      //   events: Events
-      // }
-      // );
-    });
-  });
-
   // eslint-disable-next-line no-unused-vars
   app.post("/event-submit", function(req, res) {
-    var req = req.body; //form
-    var route = req.body.eventName;
-    route = route.replace(/\s+/g, "-").toLowerCase();
+    var request = req.body; //form
+    var route = request.eventName; //looking in the form for eventName
+    route = route.replace(/\s+/g, "-").toLowerCase(); //remove space for -
 
     console.log("req body", req.body);
 
-    db.Events.update({
+    db.Events.create({
       events_route: route,
-      event_name: req.eventName,
-      event_type: req.eventType,
-      event_date: req.eventLocation,
-      event_link: req.eventLink,
-      event_location: req.eventLocation,
-      event_description: req.eventDescription,
-      event_image: req.eventImage,
-      event_price: req.eventPrice
+      event_name: request.eventName,
+      event_type: request.eventType,
+      event_date: request.eventLocation,
+      event_link: request.eventLink,
+      event_location: request.eventLocation,
+      event_description: request.eventDescription,
+      event_image: request.eventImage,
+      event_price: request.eventPrice
     }).then(function(err, res) {
       if (err) {
         throw err;
       }
-      console.log(res);
+      console.log("res: ", res);
     });
   });
   // Render 404 page for any unmatched routes

@@ -10,3 +10,4 @@ install:
   - npm i chai
 before_install:
   - mysql -e 'CREATE DATABASE testdb;'
+
