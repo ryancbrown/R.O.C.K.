@@ -14,10 +14,12 @@ if (env === "production") {
   var sequelize = new Sequelize(config.production.connection);
 } else {
   var sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
+    config.development.database,
+    config.development.username,
+    config.development.password, { 
+      host: 'localhost',
+      dialect: 'mysql'
+    }
   );
 }
 
