@@ -321,6 +321,15 @@ module.exports = function(app) {
       console.log(res);
     });
   });
+
+  app.get("/organizer", function(req, res) {
+    db.Artist.findAll({
+      where: { profile__approved: true }
+    }).then(function(results) {
+      res.render("organizer", { profiles: results });
+    });
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
