@@ -4,11 +4,6 @@ var bcrypt = require("bcrypt");
 var moment = require("moment");
 var saltRounds = 10;
 
-//dispaly events page
-// module.exports = function(app) {
-
-// };
-
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -296,31 +291,6 @@ module.exports = function(app) {
     res.render("event-submit");
   });
 
-<<<<<<< HEAD
-=======
-  // Load events page and pass in an events by id
-  app.get("/events", function(req, res) {
-    db.Events.findAll({}).then(function(Events) {
-      res.send("hello");
-      // res.render("events", {
-      //   events: Events
-      // }
-      // );
-    });
-  });
-
-  //single display of page
-  app.get("/events/:route", function(req, res) {
-    db.Artist.findOne({
-      where: { event_route: req.params.route }
-    }).then(function(eventsdb) {
-      res.render("events-display", {
-        eventsPage: eventsdb
-      });
-    });
-  });
-
->>>>>>> c5e78b2c4120a02fa5cd5ed4951c29ce1ae826d9
   // eslint-disable-next-line no-unused-vars
   app.post("/event-submit", function(req, res) {
     var request = req.body; //form

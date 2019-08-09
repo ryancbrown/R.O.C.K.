@@ -4,32 +4,68 @@ var router = express.Router();
 var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 
+
 module.exports = function(app) {
   // Get all events
   app.get("/events", function(req, res) {
     db.Events.findAll({}).then(function(dbEvents) {
-      // console.log(dbEvents);
       res.render("events", { events: dbEvents });
     });
   });
 
-  //SEARCH FUNCTION ON EVENT PAGE
-  router.get("/search", (req, res) => {
-    var { term } = req.query;
-      console.log(term);
-        db.Events.findAll({ where: { event_description: { [Op.like]: "%" + term + "%" } } })
-          .then(events => res.render("events", { events: dbEvents }))
-          .catch(err => console.log(err));
-      });
-  
-  // Get all events
+  //music only
+  app.get("/music", function(req, res) {
+    db.Events.findAll({
+      where: {
+        event_type: "Music"
+      }
+    }).then(function(dbEvents) {
+      res.render("music", { events: dbEvents });
+    });
+  });
+
+  //art only
+  app.get("/art", function(req, res) {
+    db.Events.findAll({
+      where: {
+        event_type: "Art"
+      }
+    }).then(function(dbEvents) {
+      res.render("art", { events: dbEvents });
+    });
+  });
+
+  //performance art only
+  app.get("/permart", function(req, res) {
+    db.Events.findAll({
+      where: {
+        event_type: "Performance Arts"
+      }
+    }).then(function(dbEvents) {
+      res.render("permart", { events: dbEvents });
+    });
+  });
+
+  //other display
+  app.get("/other", function(req, res) {
+    db.Events.findAll({
+      where: {
+        event_type: "Other"
+      }
+    }).then(function(dbEvents) {
+      res.render("other", { events: dbEvents });
+    });
+  });
+
+
+  // Get all events and display in JSON
   app.get("/api/events", function(req, res) {
     db.Events.findAll({}).then(function(dbEvents) {
       res.json(dbEvents);
     });
   });
 
-  // Create a new events
+  // Create a new events via JSON 
   app.post("/api/events", function(req, res) {
     db.Events.create(req.body).then(function(dbEvents) {
       res.json(dbEvents);

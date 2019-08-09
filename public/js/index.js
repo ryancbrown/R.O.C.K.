@@ -37,19 +37,36 @@ $("#eventSubmit").on("click", function(event) {
     eventPrice: $("#eventPrice").val()
   };
 
-<<<<<<< HEAD
   // console.log(form);
   // event submit AJAX post
   $.post("/event-submit", form).then(function(req, res) {
     console.log("res post index.js" + res);
-=======
-  // event submit AJAX post
-  $.post("/event-submit", form).then(function(req, res) {
-    //
->>>>>>> c5e78b2c4120a02fa5cd5ed4951c29ce1ae826d9
   });
 });
 
+$("#eventSearch").on("click", function(event) {
+  var Sequelize = require("sequelize");
+  var Op = Sequelize.Op;
+  var form = {
+    eventName: $("#eventName").val(),
+    eventType: $("#eventType").val(),
+    eventLocation: $("#eventLocation").val(),
+    eventLink: $("#eventLink").val(),
+    eventImage: $("#eventImage").val(),
+    eventDate: $("#eventDate").val(),
+    eventDescription: $("#eventDescription").val(),
+    eventPrice: $("#eventPrice").val()
+  };
+  console.log(event);
+  // grabbing events based on search
+  $.get("/search", form, (req, res) => {
+    var { term } = req.query;
+    console.log("term", term);
+    db.Events.findAll({ where: { event_description: { [Op.like]: "%" + term + "%" } } })
+    .then(events => res.render("events", { events }))
+    .catch(err => console.log(err));
+  });
+});
 // Handle booking modal
 $("#bookArtist").on("click", function() {
   $("#modal").toggleClass("hidden");
@@ -498,95 +515,3 @@ $(document).on("click", ".actionProfile", function() {
 
   $.post("/admin/update", action).then(tabData());
 });
-<<<<<<< HEAD
-=======
-
-function tabData() {
-  var active = $(".active").attr("id");
-  var activeTab = $(".activeTab").attr("id");
-  // Store active tab info
-  localStorage.setItem("active", active);
-  localStorage.setItem("activeTab", activeTab);
-  // Reload
-  window.location.href = window.location.href;
-}
-
-//LANDING PAGE JAVASCRIPT
-var scrollpos = window.scrollY;
-var header = document.getElementById("header");
-var navcontent = document.getElementById("nav-content");
-var navaction = document.getElementById("navAction");
-// eslint-disable-next-line no-unused-vars
-var brandname = document.getElementById("brandname");
-var toToggle = document.querySelectorAll(".toggleColour");
-
-document.addEventListener("scroll", function() {
-  /*Apply classes for slide in bar*/
-  scrollpos = window.scrollY;
-
-  if (scrollpos > 10) {
-    header.classList.add("bg-white");
-    navaction.classList.remove("bg-white");
-    navaction.classList.add("gradient");
-    navaction.classList.remove("text-gray-800");
-    navaction.classList.add("text-white");
-    //Use to switch toggleColour colours
-    for (var i = 0; i < toToggle.length; i++) {
-      toToggle[i].classList.add("text-gray-800");
-      toToggle[i].classList.remove("text-white");
-    }
-    header.classList.add("shadow");
-    navcontent.classList.remove("bg-gray-100");
-    navcontent.classList.add("bg-white");
-  } else {
-    header.classList.remove("bg-white");
-    navaction.classList.remove("gradient");
-    navaction.classList.add("bg-white");
-    navaction.classList.remove("text-white");
-    navaction.classList.add("text-gray-800");
-    //Use to switch toggleColour colours
-    for (var i = 0; i < toToggle.length; i++) {
-      toToggle[i].classList.add("text-white");
-      toToggle[i].classList.remove("text-gray-800");
-    }
-
-    header.classList.remove("shadow");
-    navcontent.classList.remove("bg-white");
-    navcontent.classList.add("bg-gray-100");
-  }
-});
-
-var navMenuDiv = document.getElementById("nav-content");
-var navMenu = document.getElementById("nav-toggle");
-
-document.onclick = check;
-function check(e) {
-  var target = (e && e.target) || (event && event.srcElement);
-
-  //Nav Menu
-  if (!checkParent(target, navMenuDiv)) {
-    // click NOT on the menu
-    if (checkParent(target, navMenu)) {
-      // click on the link
-      if (navMenuDiv.classList.contains("hidden")) {
-        navMenuDiv.classList.remove("hidden");
-      } else {
-        navMenuDiv.classList.add("hidden");
-      }
-    } else {
-      // click both outside link and outside menu, hide menu
-      // navMenuDiv.classList.add("hidden");
-    }
-  }
-}
-function checkParent(t, elm) {
-  while (t.parentNode) {
-    // eslint-disable-next-line eqeqeq
-    if (t == elm) {
-      return true;
-    }
-    t = t.parentNode;
-  }
-  return false;
-}
->>>>>>> c5e78b2c4120a02fa5cd5ed4951c29ce1ae826d9
