@@ -1,25 +1,25 @@
-// var token = { token: localStorage.getItem("token") };
-// console.log(token);
-// // On page load send stored token to server
-// if (token !== "") {
-//   $.post("/token", token).then(function(res) {
-//     if (res.status === "valid") {
-//       // Change "Log in" to "Logout", change id to "logout" so database can be updated if clicked
-//       $("#loadLogin")
-//         .text("Logout")
-//         .attr({ id: "logout" });
+var token = { token: localStorage.getItem("token") };
+console.log(token);
+// On page load send stored token to server
+if (token !== "") {
+  $.post("/token", token).then(function(res) {
+    if (res.status === "valid") {
+      // Change "Log in" to "Logout", change id to "logout" so database can be updated if clicked
+      $("#loadLogin")
+        .text("Logout")
+        .attr({ id: "logout" });
 
-//       $("#options").append(
-//         // eslint-disable-next-line prettier/prettier
-//         "<div class=\"text-sm lg:flex-grow text-right w-1/12\"><a href=\"/profile\" class=\"block mt-4 lg:inline-block lg:mt-0 text-purple-800 hover:text-purple-400 mr-4 text-right\">Profile</a></div>"
-//       );
+      $("#options").append(
+        // eslint-disable-next-line prettier/prettier
+        "<div class=\"text-sm lg:flex-grow text-right w-1/12\"><a href=\"/profile\" class=\"block mt-4 lg:inline-block lg:mt-0 text-purple-800 hover:text-purple-400 mr-4 text-right\">Profile</a></div>"
+      );
 
-//       $(".align")
-//         .removeClass("w-10/12")
-//         .addClass("w-9/12");
-//     }
-//   });
-// }
+      $(".align")
+        .removeClass("w-10/12")
+        .addClass("w-9/12");
+    }
+  });
+}
 
 // EVENT PAGE EVENT CLICKS
 // add in the event clicks for that ther
