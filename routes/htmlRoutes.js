@@ -23,59 +23,76 @@ module.exports = function(app) {
 
   // Load admin page with accounts needing review
   app.get("/admin", function(req, res) {
-    db.Artist.findAll({
-      where: { profile__approved: false }
-    }).then(function(results) {
+    db.Artist.findAll({}).then(function(results) {
       res.render("admin", { profiles: results });
     });
   });
 
   // Handle approval or rejection of profiles
-  app.post("/admin", function(req, res) {
+  app.post("/admin/update", function(req, res) {
     if (req.body.action === "approve") {
       db.Artist.update(
-        { profile__approved: true },
+        { profile__approved: true, profile__rejected: false },
         { where: { id: req.body.userID } }
-      );
+      ).then(console.log("success"));
     } else {
       db.Artist.update(
-        { profile__rejected: true },
+        { profile__rejected: true, profile__approved: false },
         { where: { id: req.body.userID } }
-      );
+      ).then(console.log("fail"));
     }
-    res.status(200);
   });
 
   ///////////////////////////////
   //          PROFILE          //
   ///////////////////////////////
 
-  app.get("/profile", function(req, res) {
+  app.get("/profile/update", function(req, res) {
     res.render("profile-input");
   });
 
-  app.post("/profile", function(req, res) {
-    var req = req.body;
-    var route = req.artistName;
+  app.post("/profile/update", function(req, res) {
+    var request = req.body;
+    var route = request.artistName;
     route = route.replace(/\s+/g, "-").toLowerCase();
+    var youtubeID = ytParse(request.youtubeDemo);
+    console.log(request.artistAudience);
+    db.Artist.update(
+      {
+        artist__name: request.artistName,
+        artist__route_name: route,
+        artist__type: request.artistType,
+        artist__medium_genre: request.artistMedium,
+        artist__audience: request.artistAudience,
+        artist__demo_youtube: youtubeID,
+        artist__demo__spotify: request.spotifyDemo,
+        artist__profile_image: request.profileImage,
+        artist__pay_rate: request.artistPay,
+        artist__rate_negotiable: request.rateNegotiable,
+        artist__social_facebook: request.socialFacebook,
+        artist__social_twitter: request.socialTwitter,
+        artist__social_youtube: request.socialYoutube
+      },
+      { where: { artist__login_email: request.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
+    );
+  });
 
-    db.Artist.update({
-      artist__route_name: route,
-      artist__real_name: req.contactName,
-      artist__name: req.artistName,
-      artist__email: req.contactEmail,
-      artist__medium_genre: req.artistMedium,
-      artist__audience: req.artistAudience,
-      artist__demo_youtube: req.youtubeDemo,
-      artist__demo__spotify: req.spotifyDemo,
-      artist__profile_image: req.profileImage,
-      artist__pay_rate: req.artistPay,
-      artist__rate_negotiable: req.rateNegotiable,
-      artist__social_facebook: req.socialFacebook,
-      artist__social_twitter: req.socialTwitter,
-      artist__social_youtube: req.socialYoutube
-    }).then(function(result) {
-      //
+  function ytParse(url) {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return match && match[7].length === 11 ? match[7] : false;
+  }
+
+  app.post("/profile/update/contact", function(req, res) {
+    var request = req.body;
+    db.Artist.update(
+      {
+        artist__real_name: request.contactName,
+        artist__email: request.contactEmail
+      },
+      { where: { artist__login_email: request.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
+    ).then(function(result) {
+      console.log("updated");
     });
   });
 
@@ -102,7 +119,7 @@ module.exports = function(app) {
     var hash = bcrypt.hashSync(req.password, salt);
 
     userExists(req.email, hash); // L77
-    res.status(200).json({ redirect: "/profile" });
+    res.status(200);
   });
 
   function userExists(email, hash) {
@@ -111,10 +128,11 @@ module.exports = function(app) {
         email: email
       }
     }).then(function(results) {
+      console.log(results.count);
       // Check if the email exists
       if (results.count === 1) {
         // eslint-disable-next-line prettier/prettier
-        console.log("User \"" + email + "\" created.");
+        console.log("User \"" + email + "\" exists.");
       } else {
         // If email does not exist add
         db.Users.create({
@@ -125,6 +143,7 @@ module.exports = function(app) {
             .toString(13)
             .replace(".", "");
           var expireToken = moment().add(6, "h");
+
           createProfile(email);
           assignToken(email, token, expireToken);
           // eslint-disable-next-line prettier/prettier
@@ -145,10 +164,11 @@ module.exports = function(app) {
     }).then(function(user) {
       // If user does not exist then return account does not exist
       if (!user) {
-        return res.status(200).json({ message: "Invalid email" });
+        return res.status(200).json({ message: "Invalid email or password" });
       } else {
         // If exists, then check password
         bcrypt.compare(req.body.password, user.password, function(err, result) {
+          console.log("true");
           // Password is correct
           if (result === true) {
             // Generate session token with expiration
@@ -161,11 +181,11 @@ module.exports = function(app) {
             // Check if Artist profile has been created for user, if not then create one // L77
             checkProfile(req.body.email);
             // Pass access token to client for storage
-            res.status(200).json({ token: token, redirect: "/" });
+            res.status(200).json({ username: req.body.email, token: token });
           } else {
             // Otherwise incorrect password
             return res.status(200).json({
-              message: "Invalid password"
+              message: "Invalid email or password"
             });
           }
         });
@@ -257,17 +277,6 @@ module.exports = function(app) {
     });
   });
 
-  //single display of page
-  app.get("/events/:route", function(req, res) {
-    db.Artist.findOne({
-      where: { event_route: req.params.route }
-    }).then(function(eventsdb) {
-      res.render("events-display", {
-        eventsPage: eventsdb
-      });
-    });
-  });
-
   app.get("/profile/:routename", function(req, res) {
     db.Artist.findOne({
       where: { artist__route_name: req.params.routename }
@@ -295,6 +304,17 @@ module.exports = function(app) {
       //   events: Events
       // }
       // );
+    });
+  });
+
+  //single display of page
+  app.get("/events/:route", function(req, res) {
+    db.Artist.findOne({
+      where: { event_route: req.params.route }
+    }).then(function(eventsdb) {
+      res.render("events-display", {
+        eventsPage: eventsdb
+      });
     });
   });
 
@@ -328,6 +348,10 @@ module.exports = function(app) {
     }).then(function(results) {
       res.render("organizer", { profiles: results });
     });
+  });
+
+  app.get("/error", function(req, res) {
+    res.render("error");
   });
 
   // Render 404 page for any unmatched routes
