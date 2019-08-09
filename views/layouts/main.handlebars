@@ -7,11 +7,11 @@
   <title>POC ROCK</title>
 </head>
 <body>
-<nav class="flex items-center justify-between flex-wrap bg-white p-4 border-b-2 border-gray-300">
-  <div class="flex items-center flex-shrink-0 text-black mr-6">
-    <img src="https://i.imgur.com/36Vkw2v.png" alt="logo">
-  </div>
-  <div class="block lg:hidden">
+  <nav class="flex items-center justify-between flex-wrap bg-white p-4 border-b border-gray-300">
+    <div class="flex items-center flex-shrink-0 text-black mr-6">
+      <img src="https://i.imgur.com/36Vkw2v.png" alt="logo">
+    </div>
+    <div class="block lg:hidden">
         <button class="flex items-center px-3 py-2 border rounded text-purple-200 border-purple-400 hover:text-white hover:border-white">
       <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
     </button>
@@ -34,98 +34,73 @@
             {{!-- need to fix log in function --}}
         <button id="loadLogin" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Log In</button>
       </div>
-      {{!-- <a href="/events" class="block mt-4 lg:inline-block lg:mt-0 text-purple-800 hover:text-purple-400 mr-4">
-        Events
-      </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-purple-800 hover:text-purple-400 mr-4 text-right">
-        Organizers
-      </a>
-    </div> --}}
-<!-- Search -->
-        {{!-- <div class="block py-4 mt-4 lg:inline-block lg:mt-0 lg:py-0 lg:mr-8">
-          <div class="relative">
-            <input name="q" class="w-full outline-none rounded-sm shadow appearance-none border pl-10 pr-4 py-2" placeholder="Search..." aria-label="Search Input">
-            <div class="flex items-center absolute pin-l pin-y px-3">
-            </div>
-          </div>
-        </div> --}}
-{{!-- log in feature --}}
-    {{!-- <div>
-      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-purple-800 border-purple-800 hover:border-transparent hover:text-purple-400 hover:bg-purple-800 mt-4 lg:mt-0" id="loadLogin">Log In</a>
-    </div> --}}
   </div>
 </nav>
 
-    <!-- Log into an existing account --> 
-    <div class="bg-gray-200 border-b hidden flex mb-8 pt-10 pb-8" id="existingAccount">
-      <div class="container mx-auto"> 
-        <div class="flex"> 
-          <div class="w-full"></div>
-        </div>  
-        
-        <div class="flex"> 
-          <div class="error italic text-red-600 text-right text-sm pr-3 py-1 w-3/6"></div>
-          <div class="pr-5 w-1/6">
-              <input class="border py-1 px-3 rounded w-full" id="emailLogin" placeholder="email">
+      <!-- Log into an existing account --> 
+      <div class="bg-gray-200 border-b hidden flex mb-8 pt-10 pb-8" id="existingAccount">
+        <div class="container mx-auto"> 
+          <div class="flex"> 
+            <div class="w-full"></div>
+          </div>  
+          
+          <div class="flex"> 
+            <div class="error italic text-red-600 text-right text-sm pr-3 py-1 w-3/6"></div>
+            <div class="pr-5 w-1/6">
+                <input class="border py-1 px-3 rounded w-full" id="emailLogin" placeholder="email">
+            </div>
+            <div class="pr-5 w-1/6">
+                <input class="border py-1 px-3 rounded w-full" id="passwordLogin" type="password" placeholder="password">
+            </div>
+            <div class="w-1/6">
+              <button id="login" class="bg-purple-500 border hover:bg-blue-700 text-sm text-white px-4 py-1 rounded w-full">Log in</button>
+            </div>
           </div>
-          <div class="pr-5 w-1/6">
-              <input class="border py-1 px-3 rounded w-full" id="passwordLogin" type="password" placeholder="password">
-          </div>
-          <div class="w-1/6">
-            <button id="login" class="bg-purple-500 border hover:bg-blue-700 text-sm text-white px-4 py-1 rounded w-full">Log in</button>
-          </div>
-        </div>
 
-        <div class="flex"> 
-          <div class="pt-2 text-right text-sm w-full">
-            <em>Don't have an account? <a href="" id="loadNewAccount">Create one.</a></em>
+          <div class="flex"> 
+            <div class="pt-2 text-right text-sm w-full">
+              <em>Don't have an account? <a href="" id="loadNewAccount">Create one.</a></em>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Create a profile --> 
-    <div class="bg-purple-200 flex hidden mb-8 pb-8 pt-10" id="newAccount">
-      <div class="container mx-auto"> 
-        <div class="flex"> 
-          <div class="w-full"></div>
-        </div>
-        
-        <div class="flex">
-          <div class="w-3/6"></div>
-          <div class="w-1/6 pr-5">
-              <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createEmail" placeholder="email">
+      <!-- Create a profile --> 
+      <div class="bg-purple-200 flex hidden mb-8 pb-8 pt-10" id="newAccount">
+        <div class="container mx-auto"> 
+          <div class="flex"> 
+            <div class="w-full"></div>
           </div>
-          <div class="w-1/6 pr-5">
-            <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createPassword" type="password" placeholder="password">
+          
+          <div class="flex">
+            <div class="w-3/6"></div>
+            <div class="w-1/6 pr-5">
+                <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createEmail" placeholder="email">
+            </div>
+            <div class="w-1/6 pr-5">
+              <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createPassword" type="password" placeholder="password">
+            </div>
+            <div class="w-1/6">
+              <button id="createLogin" class="bg-purple-500 border hover:bg-blue-700 w-full px-4 py-1 rounded text-sm text-white">Create Profile</button>
+            </div>
           </div>
-          <div class="w-1/6">
-            <button id="createLogin" class="bg-purple-500 border hover:bg-blue-700 w-full px-4 py-1 rounded text-sm text-white">Create Profile</button>
-          </div>
-        </div>
 
-        <div class="flex"> 
-          <div class="pt-2 text-right text-sm w-full">
-            <em>Oops! I meant to <a id="returnLogin" href="">log in</a>.</em>
+          <div class="flex"> 
+            <div class="pt-2 text-right text-sm w-full">
+              <em>Oops! I meant to <a id="returnLogin" href="">log in</a>.</em>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 
   {{{body}}}
-<div class="p-6 m-6">
-  {{!-- giving cushion for the footer --}}
-</div>
-{{!-- SMALLER FOOTER --}}
-<footer class="footer w-full text-center border-t border-grey p-4 pin-b bg-gray-200 p-4 border-t-2 border-gray-300 text-purple-600">
-    <p>&copy; 2019 | <a href="#" target="_blank">Terms of Service</a> | <a href="/" target="_blank">About</a> | <a href="/events" target="_blank">Events</a> |<a href="/organizer" target="_blank">Artists</a></p>
-</footer> 
-	
-  {{!-- w-full flex text-center items-center justify-between flex-wrap bg-gray-200 p-4 border-t-2 border-gray-300 text-purple-600 text-sm --}}
-
+    <div class="p-6 m-6"> {{!-- giving cushion for the footer --}}
+  </div>
+  <footer class="footer w-full text-center border-t border-grey p-4 pin-b bg-gray-200 p-4 border-t-2 border-gray-300 text-purple-600">
+      <p>&copy; 2019 | <a href="#" target="_blank">Terms of Service</a> | <a href="/" target="_blank">About</a> | <a href="/events" target="_blank">Events</a> |<a href="/organizer" target="_blank">Artists</a></p>
+  </footer> 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="/js/index.js"></script>
 </body>
-
 </html>

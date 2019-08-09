@@ -46,9 +46,16 @@ module.exports = function(sequelize, DataTypes) {
     artist__login_email: {
       type: DataTypes.STRING
     },
-    admin_approved: {
+    profile__approved: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    profile__rejected: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    profile__reviewed_by: {
+      type: DataTypes.STRING
     }
   });
   return Artist;
