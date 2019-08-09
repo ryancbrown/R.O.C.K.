@@ -1,4 +1,8 @@
 var db = require("../models");
+var express = require("express");
+var router = express.Router();
+var Sequelize = require("sequelize");
+var Op = Sequelize.Op;
 
 module.exports = function(app) {
   // Get all events
@@ -9,6 +13,15 @@ module.exports = function(app) {
     });
   });
 
+  //SEARCH FUNCTION ON EVENT PAGE
+  router.get("/search", (req, res) => {
+    var { term } = req.query;
+      console.log(term);
+        db.Events.findAll({ where: { event_description: { [Op.like]: "%" + term + "%" } } })
+          .then(events => res.render("events", { events: dbEvents }))
+          .catch(err => console.log(err));
+      });
+  
   // Get all events
   app.get("/api/events", function(req, res) {
     db.Events.findAll({}).then(function(dbEvents) {

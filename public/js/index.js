@@ -37,9 +37,16 @@ $("#eventSubmit").on("click", function(event) {
     eventPrice: $("#eventPrice").val()
   };
 
+<<<<<<< HEAD
+  // console.log(form);
+  // event submit AJAX post
+  $.post("/event-submit", form).then(function(req, res) {
+    console.log("res post index.js" + res);
+=======
   // event submit AJAX post
   $.post("/event-submit", form).then(function(req, res) {
     //
+>>>>>>> c5e78b2c4120a02fa5cd5ed4951c29ce1ae826d9
   });
 });
 
@@ -491,6 +498,8 @@ $(document).on("click", ".actionProfile", function() {
 
   $.post("/admin/update", action).then(tabData());
 });
+<<<<<<< HEAD
+=======
 
 function tabData() {
   var active = $(".active").attr("id");
@@ -580,3 +589,4 @@ function checkParent(t, elm) {
   }
   return false;
 }
+>>>>>>> c5e78b2c4120a02fa5cd5ed4951c29ce1ae826d9

@@ -7,6 +7,7 @@
                 <h2>Submit an Event</h2>
             </div>
 
+        <form action="/" method="post">
             <div class="flex pb-2">
                 <div class="w-1/6 pr-2">
                     <label> 
@@ -15,7 +16,7 @@
                 </div>
                 <div class="w-5/6 pr-5">
                     <div class="flex">
-                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventName" type="text" placeholder="Jackie's Jam Live">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventName" type="text" placeholder="Jackie's Jam Live" value="{{event_name}}">
                     </div>
                 </div>
             </div>
@@ -29,7 +30,7 @@
                 <div class="w-5/6 pr-5">
                     <div class="flex">
                         <div class="inline-block relative w-full">
-                            <select class="block appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventType">
+                            <select class="block appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventType" value="{{event_type}}">
                                 <option>Music</option>
                                 <option>Art</option>
                                 <option>Performance Arts</option>
@@ -52,7 +53,7 @@
                 </div>
                 <div class="w-5/6 pr-5">
                     <div class="flex">
-                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventLocation" type="text" placeholder="Uptown Theater">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventLocation" type="text" placeholder="Uptown Theater" value="{{event_location}}">
                     </div>
                 </div>
             </div>
@@ -65,7 +66,7 @@
                 </div>
                 <div class="w-5/6 pr-5">
                     <div class="flex">
-                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventLink" type="text" placeholder="https://greatesteventever.com/showtomorrow">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventLink" type="text" placeholder="https://greatesteventever.com/showtomorrow" value="{{event_link}}">
                     </div>
                 </div>
             </div>
@@ -78,7 +79,7 @@
                 </div>
                 <div class="w-5/6 pr-5">
                     <div class="flex">
-                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventImage" type="text" placeholder="https://greatesteventever.com/image.png">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventImage" type="text" placeholder="https://greatesteventever.com/image.png" value="{{event_image}}">
                     </div>
                 </div>
             </div>
@@ -91,7 +92,7 @@
                 </div>
                 <div class="w-5/6 pr-5">
                     <div class="flex">
-                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventDate" type="text" placeholder="01/01/2022">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventDate" type="text" placeholder="01/01/2022" value="{{event_date}}">
                     </div>
                 </div>
             </div>
@@ -104,7 +105,7 @@
                 </div>
                 <div class="w-5/6 pr-5">
                     <div class="flex">
-                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventPrice" type="text" placeholder="20.50">
+                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventPrice" type="text" placeholder="20.50" value="{{event_price}}">
                     </div>
                 </div>
             </div>
@@ -117,7 +118,7 @@
                 </div>
                 <div class="w-5/6 pr-5">
                     <div class="flex">
-                        <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" id="eventDescription" type="text" placeholder="This event will feature artists XXX and Mx. Mini in a live performance...">
+                        <textarea name="description" id="eventDescription" class="“appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" placeholder=“This event will feature artists XXX and Mx. Mini in a live performance..." rows=“10">{{event_description}}</textarea>
                     </div>
                 </div>
             </div>
@@ -130,18 +131,20 @@
                     </button>
                 </div>
             </div>
+            </form>
         </div>  {{!-- this may  not be in the right place --}}
 
         <!-- Sidebar -->
         <div class="w-2/6 border-top mt-5 rounded-tr-lg p-4 h-56">
             <div class="max-w-sm rounded overflow-hidden shadow-lg">
                 {{!-- need to change the image here --}}
-                <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains">
+                <img class="w-full" src="/images/featuredartist.jpeg" alt="Featured artist's headshot">
                 <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">Featured Artist</div>
-                    <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+                    <div class="font-bold text-xl mb-2">Featured Artist: Prince Akachi</div>
+                    <p class="text-gray-700 text-base">Price is an art lover and story teller. Avaliable for photography shootings -- events, headshots, and anything in between. Check out their <a href="https://unsplash.com/@princearkman" target="_blank">unsplash account</a>.</p>
+                    <hr>
                     {{!-- need to change the link below to the log in area --}}
-                    <p class="text-gray-700 text-base">Want to be a featured artist? <a href="#">Create a profile!</a></p>
+                    <p class="uppercase text-sm text-gray-700">Want to be a featured artist? <a href="#">Create a profile!</a></p>
                 </div>
             </div>
         </div>
