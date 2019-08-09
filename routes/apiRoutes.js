@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 var db = require("../models");
 var express = require("express");
 var router = express.Router();
@@ -55,7 +56,6 @@ module.exports = function(app) {
       res.render("other", { events: dbEvents });
     });
   });
-
 
   // Get all events and display in JSON
   app.get("/api/events", function(req, res) {
