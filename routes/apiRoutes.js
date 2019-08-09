@@ -4,7 +4,6 @@ var router = express.Router();
 var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 
-
 module.exports = function(app) {
   // Get all events
   app.get("/events", function(req, res) {
