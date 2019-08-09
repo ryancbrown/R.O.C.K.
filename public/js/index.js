@@ -7,7 +7,15 @@ if (token !== "") {
       // Change "Log in" to "Logout", change id to "logout" so database can be updated if clicked
       $("#loadLogin")
         .text("Logout")
-        .attr({ id: "logout" });
+        .attr({ id: "logout" })
+
+      $("#existingAccount").remove()
+      console.log(".nav")
+      if (res.user === 'admin') { 
+        $('.nav').append('<div>a</div')
+      } else { 
+
+      }
 
       $("#options").append(
         // eslint-disable-next-line prettier/prettier
@@ -37,12 +45,36 @@ $("#eventSubmit").on("click", function(event) {
     eventPrice: $("#eventPrice").val()
   };
 
+  // console.log(form);
   // event submit AJAX post
   $.post("/event-submit", form).then(function(req, res) {
-    //
+    console.log("res post index.js" + res);
   });
 });
 
+$("#eventSearch").on("click", function(event) {
+  var Sequelize = require("sequelize");
+  var Op = Sequelize.Op;
+  var form = {
+    eventName: $("#eventName").val(),
+    eventType: $("#eventType").val(),
+    eventLocation: $("#eventLocation").val(),
+    eventLink: $("#eventLink").val(),
+    eventImage: $("#eventImage").val(),
+    eventDate: $("#eventDate").val(),
+    eventDescription: $("#eventDescription").val(),
+    eventPrice: $("#eventPrice").val()
+  };
+  console.log(event);
+  // grabbing events based on search
+  $.get("/search", form, (req, res) => {
+    var { term } = req.query;
+    console.log("term", term);
+    db.Events.findAll({ where: { event_description: { [Op.like]: "%" + term + "%" } } })
+    .then(events => res.render("events", { events }))
+    .catch(err => console.log(err));
+  });
+});
 // Handle booking modal
 $("#bookArtist").on("click", function() {
   $("#modal").toggleClass("hidden");
@@ -54,23 +86,24 @@ $("#modalClose").on("click", function() {
 
 // Handle login buttons
 // Show initial login button
-$("#loadLogin").on("click", function(e) {
-  e.preventDefault();
-  // If user clicks "login" and newAccount is visible
-  if (
-    $("#newAccount").hasClass("visible") &&
-    $("#existingAccount").hasClass("hidden")
-  ) {
-    // Then remove newAccount
-    $("#newAccount")
-      .toggleClass("hidden")
-      .removeClass("visible");
-  } else {
-    $("#existingAccount")
-      .toggleClass("hidden")
-      .addClass("visible");
-  }
-});
+  $("#loadLogin").on("click", function(e) {
+    e.preventDefault();
+    // If user clicks "login" and newAccount is visible
+    if (
+      $("#newAccount").hasClass("visible") &&
+      $("#existingAccount").hasClass("hidden")
+    ) {
+      // Then remove newAccount
+      $("#newAccount")
+        .toggleClass("hidden")
+        .removeClass("visible");
+    } else {
+      $("#existingAccount")
+        .toggleClass("hidden")
+        .addClass("visible");
+    }
+  });
+
 
 // Switch to create account
 $("#loadNewAccount").on("click", function(e) {
@@ -190,7 +223,7 @@ $("#login").on("click", function(e) {
     localStorage.setItem("user", res.username);
     localStorage.setItem("token", res.token);
 
-    if (res.message === undefined) {
+    if (res.message !== "" || unde) {
       window.location.href = window.location.href;
     } else {
       // If error return reason
@@ -204,7 +237,10 @@ $(document).on("click", "#logout", function() {
   var token = { token: localStorage.getItem("token") };
 
   $.post("/logout", token).then(function(res) {
-    console.log(res.message);
+    console.log(res.token);
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    window.location.href = "/"
   });
 });
 
@@ -500,83 +536,4 @@ function tabData() {
   localStorage.setItem("activeTab", activeTab);
   // Reload
   window.location.href = window.location.href;
-}
-
-//LANDING PAGE JAVASCRIPT
-var scrollpos = window.scrollY;
-var header = document.getElementById("header");
-var navcontent = document.getElementById("nav-content");
-var navaction = document.getElementById("navAction");
-// eslint-disable-next-line no-unused-vars
-var brandname = document.getElementById("brandname");
-var toToggle = document.querySelectorAll(".toggleColour");
-
-document.addEventListener("scroll", function() {
-  /*Apply classes for slide in bar*/
-  scrollpos = window.scrollY;
-
-  if (scrollpos > 10) {
-    header.classList.add("bg-white");
-    navaction.classList.remove("bg-white");
-    navaction.classList.add("gradient");
-    navaction.classList.remove("text-gray-800");
-    navaction.classList.add("text-white");
-    //Use to switch toggleColour colours
-    for (var i = 0; i < toToggle.length; i++) {
-      toToggle[i].classList.add("text-gray-800");
-      toToggle[i].classList.remove("text-white");
-    }
-    header.classList.add("shadow");
-    navcontent.classList.remove("bg-gray-100");
-    navcontent.classList.add("bg-white");
-  } else {
-    header.classList.remove("bg-white");
-    navaction.classList.remove("gradient");
-    navaction.classList.add("bg-white");
-    navaction.classList.remove("text-white");
-    navaction.classList.add("text-gray-800");
-    //Use to switch toggleColour colours
-    for (var i = 0; i < toToggle.length; i++) {
-      toToggle[i].classList.add("text-white");
-      toToggle[i].classList.remove("text-gray-800");
-    }
-
-    header.classList.remove("shadow");
-    navcontent.classList.remove("bg-white");
-    navcontent.classList.add("bg-gray-100");
-  }
-});
-
-var navMenuDiv = document.getElementById("nav-content");
-var navMenu = document.getElementById("nav-toggle");
-
-document.onclick = check;
-function check(e) {
-  var target = (e && e.target) || (event && event.srcElement);
-
-  //Nav Menu
-  if (!checkParent(target, navMenuDiv)) {
-    // click NOT on the menu
-    if (checkParent(target, navMenu)) {
-      // click on the link
-      if (navMenuDiv.classList.contains("hidden")) {
-        navMenuDiv.classList.remove("hidden");
-      } else {
-        navMenuDiv.classList.add("hidden");
-      }
-    } else {
-      // click both outside link and outside menu, hide menu
-      // navMenuDiv.classList.add("hidden");
-    }
-  }
-}
-function checkParent(t, elm) {
-  while (t.parentNode) {
-    // eslint-disable-next-line eqeqeq
-    if (t == elm) {
-      return true;
-    }
-    t = t.parentNode;
-  }
-  return false;
 }

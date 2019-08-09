@@ -1,31 +1,23 @@
 <div class="container mx-auto">
+
+
     <ul class="flex border-b m-4 mb-6">
         <li class="-mb-px mr-1">
-          <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-purple-700 font-semibold" href="/events">Everything</a>
+          <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-purple-700 font-semibold" href="/music">Music</a>
         </li>
         <li class="mr-1">
-          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/music">Music</a>
+          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/events">Everything</a>
         </li>
         <li class="mr-1">
-          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="#">Art</a>
+          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/art">Art</a>
         </li>
         <li class="mr-1">
-          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="#">Performance Arts</a>
+          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/permart">Performance Arts</a>
         </li>
         <li class="mr-1">
-          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="#">Other</a>
+          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/other">Other</a>
         </li>
     </ul>
-
-
-  {{!-- <div class="w-full bg-purple-dark h-50 p-8 m-2">
-      <div class="container mx-auto py-8 bg-purple-dark">
-          <form action="/search" method="GET">
-            <input class="w-full h-16 px-3 rounded mb-8 focus:outline-none focus:shadow-outline text-xl px-8 shadow-lg border-purple-800 border-2" type="search" name="term" placeholder="Music, Art, Performance Arts..."> 
-            <button class="bg-transparent hover:bg-purple-800 text-purple-900 font-semibold hover:text-white py-2 px-4 border border-purple-800 hover:border-transparent rounded" type="submit" id="eventSearch">Search</button>
-          </form>
-      </div>
-  </div> --}}
 
 
     {{#each events}}
@@ -55,9 +47,10 @@
         <div class="bg-purple-900 text-center py-4 lg:px-4 m-5">
             <div class="p-2 bg-purple-800 items-center text-purple-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
                 <span class="flex rounded-full bg-purple-500 uppercase px-2 py-1 text-xs font-bold mr-3">Sorry!</span>
-                <span class="font-semibold mr-2 text-left flex-auto">We don't have any events listed right now. Check out our local artist instead?</span>
-                {{!-- gotta update the link here --}}
+                <span class="font-semibold mr-2 text-left flex-auto">We don't have any music events in our system. Know of one? Add it!</span>
+                <a href="/event-submit">
                 <svg class="fill-current opacity-75 h-4 w-4" xmlns="#" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+                </a>
             </div>
         </div>
      {{/each}}

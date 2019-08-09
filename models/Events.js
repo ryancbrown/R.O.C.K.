@@ -10,36 +10,27 @@ module.exports = function(sequelize, DataTypes) {
       },
       event_name: {
         type: DataTypes.STRING
-        // allowNull: false
       },
       event_type: {
         type: DataTypes.STRING
-        // allowNull: false
       },
       event_date: {
         type: DataTypes.STRING
-        // allowNull: false
       },
       event_link: {
         type: DataTypes.STRING
-        // allowNull: false
       },
       event_location: {
         type: DataTypes.STRING
-        // allowNull: true
       },
       event_description: {
         type: DataTypes.TEXT
-        // allowNull: false
       },
       event_image: {
         type: DataTypes.STRING
-        // allowNull: false
       },
       event_price: {
         type: DataTypes.STRING
-        // allowNull: false,
-        // defaultValue: "$0"
       }
     },
     {

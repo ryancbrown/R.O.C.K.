@@ -4,11 +4,6 @@ var bcrypt = require("bcrypt");
 var moment = require("moment");
 var saltRounds = 10;
 
-//dispaly events page
-// module.exports = function(app) {
-
-// };
-
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -128,7 +123,6 @@ module.exports = function(app) {
         email: email
       }
     }).then(function(results) {
-      console.log(results.count);
       // Check if the email exists
       if (results.count === 1) {
         // eslint-disable-next-line prettier/prettier
@@ -201,7 +195,7 @@ module.exports = function(app) {
       if (req.body.token === "" || req.body.token === undefined) {
         console.log("No token present.");
       } else if (new Date(result.token_expiration) > new Date()) {
-        res.status(200).json({ status: "valid" });
+        res.status(200).json({ status: "valid", user: result.email });
       } else {
         res.status(200).json({ status: "invalid" });
       }
@@ -258,12 +252,12 @@ module.exports = function(app) {
 
   // Handle log out
   app.post("/logout", function(req, res) {
-    db.Users.update(
-      { token_expiration: moment()._d },
-      { where: { token: req.body.token } }
-    ).then(function() {
-      res.status(200).json({ message: "Logout successful" });
-    });
+    console.log(req.body.token);
+    db.Users.update({ token: "" }, { where: { token: req.body.token } }).then(
+      function(results) {
+        res.status(200).json({ token: results.token });
+      }
+    );
   });
 
   // Load example page and pass in an example by id
@@ -294,28 +288,6 @@ module.exports = function(app) {
   //loading the events-submit page
   app.get("/event-submit", function(req, res) {
     res.render("event-submit");
-  });
-
-  // Load events page and pass in an events by id
-  app.get("/events", function(req, res) {
-    db.Events.findAll({}).then(function(Events) {
-      res.send("hello");
-      // res.render("events", {
-      //   events: Events
-      // }
-      // );
-    });
-  });
-
-  //single display of page
-  app.get("/events/:route", function(req, res) {
-    db.Artist.findOne({
-      where: { event_route: req.params.route }
-    }).then(function(eventsdb) {
-      res.render("events-display", {
-        eventsPage: eventsdb
-      });
-    });
   });
 
   // eslint-disable-next-line no-unused-vars
