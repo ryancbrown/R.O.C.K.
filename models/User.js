@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
 module.exports = function(sequelize, DataTypes) {
-  var Login = sequelize.define("Users", {
+  var User = sequelize.define("Users", {
     email: {
       type: DataTypes.STRING,
+      primaryKey: true,
       allowNull: false
     },
     password: {
@@ -16,5 +17,5 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE
     }
   });
-  return Login;
+  return User;
 };

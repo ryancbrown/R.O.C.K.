@@ -16,35 +16,40 @@
 </div>
 
 <div class="container mx-auto">
-    <!-- Header -->
+    {{!-- Header --}}
     {{#with artistProfile}}
-    <div class="flex mb-4" id="profileHeader">
-        <div class="w-4/6 mt-5 rounded-tl-lg bg-gray-200" style="background:url('{{artist__profile_image}}') no-repeat center center;background-size:cover;"></div>
+    <div class="flex mt-8 mb-4" id="profileHeader">
+        <div class="w-4/6 mt-5 rounded-tl-lg bg-gray-200" style="background:url('{{artist__profile_image}}') no-repeat center center;background-size:cover;">
+        
+        </div>
         <div class="w-2/6 bg-gray-100 mt-5 p-8 rounded-tr-lg">
-            <span class="text-4xl">{{artist__name}}</span>
-            
-            <div class="flex my-4 socialButtons">
-                <div class="w-1/6 pr-2">
-                    {{#if artist__social_facebook}}<a href="https://twitter.com/{{artist__social_twitter}}"><img src="/images/facebook.png" /></a>{{else}}{{/if}}
-                </div>
-                
-                <div class="w-1/6 pr-2">
-                    {{#if artist__social_twitter}}<a href="https://facebook.com/{{artist__social_twitter}}"><img src="/images/twitter.png" /></a>{{else}}{{/if}}
-                </div>
-            
-                <div class="w-1/6">
-                    {{#if artist__social_youtube}}<a href="https://youtube.com/{{artist__social_twitter}}"><img src="/images/youtube.png" /></a>{{else}}{{/if}}
-                </div>
-            </div>
+            <span class="text-4xl">{{artist__name}}</span> 
+            <div class="py-1">
+                <span class="bg-purple-500 uppercase h-auto w-auto text-xs text-white py-1 px-2 rounded">
+                    {{artist__type}}
+                </span>
 
+                <span class="ml-2 bg-purple-500 uppercase h-auto w-auto text-xs text-white py-1 px-2 rounded">
+                    {{artist__medium_genre}}
+                </span>   
+            </div>
         </div>
     </div>
-   
 
-    <!-- Book -->
+    {{!-- Social --}}
     <div class="flex mb-4 border-b border-dotted">
         <div class="w-4/6">
+            <div class="flex socialButtons">
+                <div class="w-6/12 pr-2">
+                {{#if artist__social_facebook}}<a href="https://twitter.com/{{artist__social_twitter}}"><img class="mr-6 float-left" src="/images/facebook.png" /></a>{{else}}{{/if}}
+            
+                {{#if artist__social_twitter}}<a href="https://facebook.com/{{artist__social_twitter}}"><img class="mr-6 float-left" src="/images/twitter.png" /></a>{{else}}{{/if}}
+        
+                {{#if artist__social_youtube}}<a href="https://youtube.com/{{artist__social_twitter}}"><img class="mr-6 float-left" src="/images/youtube.png" /></a>{{else}}{{/if}}
+                </div>
+            </div>
         </div>
+        {{!-- Book Button --}}
         <div class="w-2/6 border-b border-dotted mb-4">
             <button class="bg-purple-500 hover:bg-blue-700 text-white w-full py-2 px-4 rounded" id="bookArtist">
                 Book
@@ -52,47 +57,38 @@
         </div>
     </div>
 
-    <!-- DB Structure-->
+    {{!-- Content --}}
     <div class="flex mb-4">
-        <!-- Left -->
         <div class="w-4/6">
             <div class="flex mb-4"> 
-
-                    <div class="w-full py-3" id="userLeft">
-                        <div class="flex mb-4 line py-2">
-                            <div class="w-3/6">
-                                <button class="bg-purple-500 uppercase h-auto w-auto text-xs text-white py-1 px-2 rounded">
-                                    {{this.art_medium_genre}}
-                                </button>
-                            </div>
-                            <div class="w-3/6 text-right"></div>
+                <div class="w-full py-3" id="userLeft">
+                    <div class="userInformation">
+                        <div class="flex mb-4 line py-1">
+                            <div class="w-3/6">Minimum Rate: </div>
+                            <div class="w-3/6 text-right pr-8">${{artist__pay_rate}}</div>
                         </div>
-                        <div class="userInformation">
-                            <div class="flex mb-4 line py-2">
-                                <div class="w-3/6">Requested Rate: </div>
-                                <div class="w-3/6 text-right">${{this.rate}}</div>
-                            </div>
-                            <div class="flex mb-4 line py-2">
-                                <div class="w-3/6">Negotiable</div>
-                                <div class="w-3/6 text-right">{{#if true}}Yes{{else}}No{{/if}}</div>
-                            </div>
-                            <div class="flex mb-4 line py-2">
-                                <div class="w-3/6">a</div>
-                                <div class="w-3/6 text-right">$30</div>
-                            </div>
-                            <div class="flex mb-4 line py-2">
-                                <div class="w-3/6">a</div>
-                                <div class="w-3/6 text-right">$30</div>
-                            </div>         
+                        <div class="flex mb-4 line py-1">
+                            <div class="w-3/6">Negotiable</div>
+                            <div class="w-3/6 text-right pr-8">{{#if artist__rate_negotiable}}Yes{{else}}No{{/if}}</div>
                         </div>
+                        <div class="flex mb-4 line py-1">
+                            <div class="w-3/6">Audience</div>
+                            <div class="w-3/6 text-right pr-8">{{artist__audience}}</div>
+                        </div>        
                     </div>
+                </div>
             </div>
         </div>
-        <!-- Right -->
+       
+       {{!-- Sidebar --}}
         <div class="w-2/6">
-            
+            {{#if artist__demo_youtube}}
+            <iframe width="100%" height="215px" src="https://www.youtube.com/embed/{{artist__demo_youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {{/if}} 
         </div>
     </div>
     {{/with}}
 </div>
+    
+
 
