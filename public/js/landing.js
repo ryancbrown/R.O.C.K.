@@ -1,9 +1,6 @@
 //LANDING PAGE JAVASCRIPT
 
 var scrollpos = window.scrollY;
-var header = document.getElementById("header");
-var navcontent = document.getElementById("nav-content");
-var navaction = document.getElementById("navAction");
 var toToggle = document.querySelectorAll(".toggleColour");
 
 document.addEventListener("scroll", function() {
@@ -11,34 +8,32 @@ document.addEventListener("scroll", function() {
   scrollpos = window.scrollY;
 
   if (scrollpos > 10) {
-    header.classList.add("bg-white");
-    navaction.classList.remove("bg-white");
-    navaction.classList.add("gradient");
-    navaction.classList.remove("text-gray-800");
-    navaction.classList.add("text-white");
-    //Use to switch toggleColour colours
+    $("#header").addClass("bg-white");
+    $("#navaction").remove("bg-white");
+    $("#navaction").addClass("bg-white");
+    $("#navaction").remove("text-gray-800");
+    $("#navaction").addClass("text-white");
     for (var i = 0; i < toToggle.length; i++) {
       toToggle[i].classList.add("text-gray-800");
       toToggle[i].classList.remove("text-white");
     }
-    header.classList.add("shadow");
-    navcontent.classList.remove("bg-gray-100");
-    navcontent.classList.add("bg-white");
+    $("#header").addClass("shadow");
+    $("#navcontent").remove("bg-gray-100");
+    $("#navcontent").addClass("bg-white");
   } else {
-    header.classList.remove("bg-white");
-    navaction.classList.remove("gradient");
-    navaction.classList.add("bg-white");
-    navaction.classList.remove("text-white");
-    navaction.classList.add("text-gray-800");
+    $("#header").remove("bg-white");
+    $("#navaction").remove("gradient");
+    $("#navaction").addClass("bg-white");
+    $("#navaction").remove("text-white");
+    $("#navaction").addClass("text-gray-800");
     //Use to switch toggleColour colours
     for (var i = 0; i < toToggle.length; i++) {
       toToggle[i].classList.add("text-white");
       toToggle[i].classList.remove("text-gray-800");
     }
-
-    header.classList.remove("shadow");
-    navcontent.classList.remove("bg-white");
-    navcontent.classList.add("bg-gray-100");
+    $("#header").remove("shadow");
+    $("#navcontent").remove("bg-white");
+    $("#navcontent").addClass("bg-gray-100");
   }
 });
 
@@ -56,13 +51,13 @@ function check(e) {
     if (checkParent(target, navMenu)) {
       // click on the link
       if (navMenuDiv.classList.contains("hidden")) {
-        navMenuDiv.classList.remove("hidden");
+        $("#navMenuDiv").remove("hidden");
       } else {
-        navMenuDiv.classList.add("hidden");
+        $("#navMenuDiv").addClass("hidden");
       }
-      // } else {
-      //   // click both outside link and outside menu, hide menu
-      navMenuDiv.classList.add("hidden");
+    } else {
+      // click both outside link and outside menu, hide menu
+      $("#navMenuDiv").addClass("hidden");
     }
   }
 }
