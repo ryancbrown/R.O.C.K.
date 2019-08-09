@@ -13,16 +13,16 @@ module.exports = function(sequelize, DataTypes) {
     artist__email: {
       type: DataTypes.STRING
     },
+    artist__type: {
+      type: DataTypes.STRING
+    },
     artist__medium_genre: {
       type: DataTypes.STRING
     },
-    aritist__audience: {
+    artist__audience: {
       type: DataTypes.STRING
     },
     artist__demo_youtube: {
-      type: DataTypes.STRING
-    },
-    artist__demo_spotify: {
       type: DataTypes.STRING
     },
     artist__profile_image: {

@@ -22,7 +22,7 @@
                 <div class="w-2/12 py-4 border-b border-dotted">Userid</div>
                 <div class="w-8/12 py-4 border-b border-dotted">Profile</div>
                 <div class="w-1/12 py-4 border-b border-dotted">Approve</div>
-                <div class="w-1/12 py-4 border-b border-dotted">Reject</div>
+                <div class="w-1/12 py-4 border-b border-dotted text-right pr-4">Reject</div>
             </div>
         </div>
 
@@ -30,12 +30,14 @@
         <div class="mx-4">
             {{#unless profile__approved}}
             {{#unless profile__rejected}}
+            {{#if artist__route_name}}
             <div class="flex w-full"> 
                 <div class="w-2/12 py-4 border-b border-dotted">{{this.id}}.</div>
                 <div class="w-8/12 py-4 border-b border-dotted"><a href="/profile/{{this.artist__route_name}}" target="_blank">{{this.artist__route_name}}</a></div>
                 <div class="w-1/12 py-4 border-b border-dotted"><span class="rounded bg-green-400 py-3 px-4 text-sm hover:bg-green-300 actionProfile" data-outcome="approve" data-user="{{this.id}}">A</span></div>
-                <div class="w-1/12 py-4 border-b border-dotted"><span class="rounded bg-red-400 py-3 px-4 text-sm hover:bg-red-300 actionProfile" data-outcome="reject" data-user="{{this.id}}">R</span></div>
+                <div class="w-1/12 py-4 border-b border-dotted text-right pr-4"><span class="rounded bg-red-400 py-3 px-4 text-sm hover:bg-red-300 actionProfile" data-outcome="reject" data-user="{{this.id}}">R</span></div>
             </div>
+            {{/if}}
             {{/unless}}
             {{/unless}}
         </div>
@@ -46,10 +48,9 @@
         <div class="mx-4">
             <div class="flex w-full"> 
                 <div class="w-2/12 py-4 border-b border-dotted">Userid</div>
-                <div class="w-5/12 py-4 border-b border-dotted">Profile</div>
-                <div class="w-2/12 py-4 border-b border-dotted">Confirmed by</div>
+                <div class="w-6/12 py-4 border-b border-dotted">Profile</div>
                 <div class="w-2/12 py-4 border-b border-dotted">Date confirmed</div>
-                <div class="w-1/12 py-4 border-b border-dotted">Reject</div>
+                <div class="w-2/12 py-4 border-b border-dotted text-right pr-4">Reject</div>
             </div>
         </div>
 
@@ -58,10 +59,9 @@
             {{#if profile__approved}}
             <div class="flex w-full"> 
                 <div class="w-2/12 py-4 border-b border-dotted">{{this.id}}.</div>
-                <div class="w-5/12 py-4 border-b border-dotted"><a href="/profile/{{this.artist__route_name}}" target="_blank">{{this.artist__route_name}}</a></div>
-                <div class="w-2/12 py-4 border-b border-dotted text-right"><span class="rounded bg-green-400 py-3 px-4 text-sm hover:bg-green-300">{{profile__reviewed_by}}</span></div>
-                <div class="w-2/12 py-4 border-b border-dotted text-right"><span class="rounded bg-green-400 py-3 px-4 text-sm hover:bg-green-300">{{updatedAt}}</span></div>
-                <div class="w-1/12 py-4 border-b border-dotted text-right"><span class="rounded bg-red-400 py-3 px-4 text-sm hover:bg-red-300 actionProfile" data-outcome="reject" data-user="{{this.id}}">R</span></div>
+                <div class="w-6/12 py-4 border-b border-dotted"><a href="/profile/{{this.artist__route_name}}" target="_blank">{{this.artist__route_name}}</a></div>
+                <div class="w-2/12 py-4 border-b border-dotted"><span class="rounded py-3 text-sm">{{updatedAt}}</span></div>
+                <div class="w-2/12 py-4 border-b border-dotted text-right pr-4"><span class="rounded bg-red-400 py-3 px-4 text-sm hover:bg-red-300 actionProfile" data-outcome="reject" data-user="{{this.id}}">R</span></div>
             </div>
             {{/if}}
         </div>
@@ -73,10 +73,9 @@
         <div class="mx-4">
             <div class="flex w-full"> 
                 <div class="w-2/12 py-4 border-b border-dotted">Userid</div>
-                <div class="w-5/12 py-4 border-b border-dotted">Profile</div>
-                <div class="w-2/12 py-4 border-b border-dotted">Rejected by</div>
+                <div class="w-6/12 py-4 border-b border-dotted">Profile</div>
                 <div class="w-2/12 py-4 border-b border-dotted">Date rejected</div>
-                <div class="w-1/12 py-4 border-b border-dotted">Re-approve</div>
+                <div class="w-2/12 py-4 border-b border-dotted text-right pr-4">Re-approve</div>
             </div>
         </div>
 
@@ -85,10 +84,9 @@
             <div class="flex w-full"> 
                 {{#if profile__rejected}}
                 <div class="w-2/12 py-4 border-b border-dotted">{{this.id}}.</div>
-                <div class="w-5/12 py-4 border-b border-dotted"><a href="/profile/{{this.artist__route_name}}" target="_blank">{{this.artist__route_name}}</a></div>
-                <div class="w-2/12 py-4 border-b border-dotted"><span class="py-3 px-4 text-sm">{{profile__reviewed_by}}</span></div>
-                <div class="w-2/12 py-4 border-b border-dotted"><span class="py-3 px-4 text-sm">{{updatedAt}}</span></div>
-                <div class="w-1/12 py-4 border-b border-dotted"><span class="rounded bg-green-400 py-3 px-4 text-sm hover:bg-green-300 actionProfile" data-outcome="approve" data-user="{{this.id}}">A</span></div>
+                <div class="w-6/12 py-4 border-b border-dotted"><a href="/profile/{{this.artist__route_name}}" target="_blank">{{this.artist__route_name}}</a></div>
+                <div class="w-2/12 py-4 border-b border-dotted"><span class="py-3 text-sm">{{updatedAt}}</span></div>
+                <div class="w-2/12 py-4 border-b border-dotted text-right pr-4"><span class="rounded bg-green-400 py-3 px-4 text-sm hover:bg-green-300 actionProfile" data-outcome="approve" data-user="{{this.id}}">A</span></div>
                 {{/if}}
             </div>
         </div>
