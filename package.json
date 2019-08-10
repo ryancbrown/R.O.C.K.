@@ -19,6 +19,7 @@
     "fs": "0.0.1-security",
     "moment": "^2.24.0",
     "mysql2": "^1.6.5",
+    "nodemailer": "^6.3.0",
     "nodemon": "^1.19.1",
     "sequelize": "^5.12.2",
     "tailwindcss": "^1.0.5"

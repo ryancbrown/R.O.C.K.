@@ -6,13 +6,7 @@
         <li class="mr-1">
             <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold tab" id="contactTab">Contact Information</a>
         </li>        
-    </ul>
-    {{#if profile__approved}}
-        <div class="mt-4 py-3 px-2 rounded bg-green-200 text-sm">Profile approved</div>
-        {{else}}
-        
-    {{/if}}
-     
+    </ul>   
     
     <div id="profileInfo" class="active">
         <div class="flex">
@@ -20,7 +14,7 @@
         </div>
         <div class="flex my-8">
             <div class="w-4/6 mt-5 rounded-tl-lg">
-                <div class="flex py-1">
+                <div class="flex pb-1">
                     <div class="w-2/6 pr-2">
                         <label> 
                             Image <span class="ml-2 text-xs py-1 px-2 bg-gray-200 rounded">Required</span>
@@ -209,6 +203,10 @@
                     </div>
                 </div>
             </div>
+            <!-- Sidebar -->
+            <div class="w-2/6 border-top p-4">
+                <div class="bg-yellow-200 rounded p-5">POC ROCK will use this information to <a href="/organizer">generate a profile</a> for organizers to see and book you for events.</div>
+            </div>
         </div>
     </div>
 
@@ -226,7 +224,7 @@
                     </div>
                     <div class="w-5/6 pr-5">
                         <div class="flex">
-                            <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" type="text" placeholder="Jane Doe" id="contactName">
+                            <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" type="text" placeholder="Jane" id="contactName">
                         </div>
                     </div>
                 </div>
@@ -239,7 +237,7 @@
                     </div>
                     <div class="w-5/6 pr-5">
                         <div class="flex">
-                            <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" type="text" placeholder="test@gmail.com" id="contactEmail">
+                            <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" type="text" placeholder="artist@email.com" id="contactEmail">
                         </div>
                     </div>
                 </div>
@@ -252,11 +250,10 @@
                     </div>
                 </div>
             </div>
+            <!-- Sidebar -->
+            <div class="w-2/6 border-top p-4">
+                <div class="bg-yellow-200 rounded p-5">This information will be visible to organizers.</div>
+            </div>
         </div>
-    </div>
-        <!-- Sidebar -->
-        <div class="w-2/6 border-top mt-5 rounded-tr-lg p-4 h-56">
-            
-        </div>
-    </div>
+    </div> 
 </div>
