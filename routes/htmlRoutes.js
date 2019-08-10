@@ -67,7 +67,7 @@ module.exports = function(app) {
         artist__social_twitter: req.body.socialTwitter,
         artist__social_youtube: req.body.socialYoutube
       },
-      { where: { artist__login_email: request.body.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
+      { where: { artist__login_email: req.body.user } }
     );
   });
 
@@ -84,7 +84,7 @@ module.exports = function(app) {
         artist__real_name: req.body.contactName,
         artist__email: req.body.contactEmail
       },
-      { where: { artist__login_email: request.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
+      { where: { artist__login_email: req.user } }
     ).then(function(result) {
       console.log("Profile updated!");
     });
