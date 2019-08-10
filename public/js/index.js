@@ -1,5 +1,4 @@
 var token = { token: localStorage.getItem("token") };
-console.log(token);
 // On page load send stored token to server
 if (token !== "") {
   $.post("/token", token).then(function(res) {
@@ -37,10 +36,9 @@ $("#eventSubmit").on("click", function(event) {
     eventPrice: $("#eventPrice").val()
   };
 
-  // console.log(form);
   // event submit AJAX post
   $.post("/event-submit", form).then(function(req, res) {
-    console.log("res post index.js" + res);
+    // 
   });
 });
 
@@ -57,11 +55,11 @@ $("#eventSearch").on("click", function(event) {
     eventDescription: $("#eventDescription").val(),
     eventPrice: $("#eventPrice").val()
   };
-  console.log(event);
+
   // grabbing events based on search
   $.get("/search", form, (req, res) => {
     var { term } = req.query;
-    console.log("term", term);
+
     db.Events.findAll({ where: { event_description: { [Op.like]: "%" + term + "%" } } })
     .then(events => res.render("events", { events }))
     .catch(err => console.log(err));

@@ -64,7 +64,7 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new events via JSON 
+  // Create a new events via JSON
   app.post("/api/events", function(req, res) {
     db.Events.create(req.body).then(function(dbEvents) {
       res.json(dbEvents);
@@ -81,3 +81,13 @@ module.exports = function(app) {
     });
   });
 };
+
+app.get("/api/events", function(req, res) {
+  db.Events.findAll({
+    where: {
+      event_type: "Other"
+    }
+  }).then(function(dbEvents) {
+    res.render("other", { events: dbEvents });
+  });
+});
