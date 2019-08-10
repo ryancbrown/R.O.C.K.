@@ -1,5 +1,4 @@
 var token = { token: localStorage.getItem("token") };
-console.log(token);
 // On page load send stored token to server
 if (token !== "") {
   $.post("/token", token).then(function(res) {
@@ -10,7 +9,6 @@ if (token !== "") {
         .attr({ id: "logout" })
 
       $("#existingAccount").remove()
-      console.log($("#test"))
       if (res.user === 'admin') { 
         $('#nav').append('<li class="mr-3"><a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="/admin">Admin</a></li>')
       } else { 
@@ -48,7 +46,7 @@ $("#eventSubmit").on("click", function(event) {
   // console.log(form);
   // event submit AJAX post
   $.post("/event-submit", form).then(function(req, res) {
-    console.log("res post index.js" + res);
+    //
   });
 });
 
@@ -65,10 +63,10 @@ $("#eventSearch").on("click", function(event) {
     eventDescription: $("#eventDescription").val(),
     eventPrice: $("#eventPrice").val()
   };
-  console.log(event);
+
   $.get("/search", form, (req, res) => {
     var { term } = req.query;
-    console.log("term", term);
+
     db.Events.findAll({ where: { event_description: { [Op.like]: "%" + term + "%" } } })
     .then(events => res.render("events", { events }))
     .catch(err => console.log(err));
@@ -226,7 +224,7 @@ $("#login").on("click", function(e) {
     // If correct store session token
     localStorage.setItem("user", res.username);
     localStorage.setItem("token", res.token);
-    console.log(res.message)
+
     if (res.message !== "Invalid email or password") {
       window.location.href = window.location.href
     } else {
@@ -550,7 +548,7 @@ $("#emailArtist").on("click", function(){
   }
 
   $.post('/profile/email', content, function(){ 
-    console.log('email sent!')
+    console.log('Email sent!')
   })
 })
 
