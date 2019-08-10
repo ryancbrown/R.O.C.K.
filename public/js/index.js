@@ -124,9 +124,15 @@ $("#createLogin").on("click", function(e) {
     password: $("#createPassword").val()
   };
 
-  $.post("/login/create", createLogin, function(res) {
-    localStorage.setItem("token", res.token);
-  });
+  var address = $('#createEmail').val() 
+  if (!address.includes("@") || !address.includes(".")) { 
+    $(".error").html("Invalid email format")
+  } else {
+    $.post("/login/create", createLogin).then(function(res) {
+      localStorage.setItem("token", res.token);
+    });
+    window.location.href = window.location.href
+  };
 });
 
 // Update profile
@@ -220,8 +226,8 @@ $("#login").on("click", function(e) {
     // If correct store session token
     localStorage.setItem("user", res.username);
     localStorage.setItem("token", res.token);
-
-    if (res.message !== "" || undefined) {
+    console.log(res.message)
+    if (res.message !== "Invalid email or password") {
       window.location.href = window.location.href
     } else {
       // If error return reason
@@ -235,7 +241,6 @@ $(document).on("click", "#logout", function() {
   var token = { token: localStorage.getItem("token") };
 
   $.post("/logout", token).then(function(res) {
-    console.log(res.token);
     localStorage.removeItem("user")
     localStorage.removeItem("token")
     window.location.href = "/"

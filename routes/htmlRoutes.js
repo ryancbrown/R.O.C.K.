@@ -30,12 +30,12 @@ module.exports = function(app) {
       db.Artist.update(
         { profile__approved: true, profile__rejected: false },
         { where: { id: req.body.userID } }
-      ).then(console.log("success"));
+      );
     } else {
       db.Artist.update(
         { profile__rejected: true, profile__approved: false },
         { where: { id: req.body.userID } }
-      ).then(console.log("fail"));
+      );
     }
   });
 
@@ -52,7 +52,7 @@ module.exports = function(app) {
     var route = request.artistName;
     route = route.replace(/\s+/g, "-").toLowerCase();
     var youtubeID = ytParse(request.youtubeDemo);
-    console.log(request.artistAudience);
+
     db.Artist.update(
       {
         artist__name: request.artistName,
@@ -88,7 +88,7 @@ module.exports = function(app) {
       },
       { where: { artist__login_email: request.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
     ).then(function(result) {
-      console.log("updated");
+      console.log("Profile updated!");
     });
   });
 
@@ -113,12 +113,16 @@ module.exports = function(app) {
     var req = req.body;
     var salt = bcrypt.genSaltSync(saltRounds);
     var hash = bcrypt.hashSync(req.password, salt);
+    var token = Math.random()
+      .toString(13)
+      .replace(".", "");
+    var expireToken = moment().add(6, "h");
 
-    userExists(req.email, hash); // L77
-    res.status(200);
+    userExists(req.email, hash, token, expireToken); // L77
+    res.status(200).json({ token: token });
   });
 
-  function userExists(email, hash) {
+  function userExists(email, hash, tok, expire) {
     db.Users.findAndCountAll({
       where: {
         email: email
@@ -132,15 +136,12 @@ module.exports = function(app) {
         // If email does not exist add
         db.Users.create({
           email: email,
-          password: hash
+          password: hash,
+          token: tok,
+          token_expiration: expire
         }).then(function() {
-          var token = Math.random()
-            .toString(13)
-            .replace(".", "");
-          var expireToken = moment().add(6, "h");
-
           createProfile(email);
-          assignToken(email, token, expireToken);
+          assignToken(email, tok, expire);
           // eslint-disable-next-line prettier/prettier
           console.log("User \"" + email + "\" created.");
         });
@@ -163,7 +164,6 @@ module.exports = function(app) {
       } else {
         // If exists, then check password
         bcrypt.compare(req.body.password, user.password, function(err, result) {
-          console.log("true");
           // Password is correct
           if (result === true) {
             // Generate session token with expiration
@@ -253,7 +253,6 @@ module.exports = function(app) {
 
   // Handle log out
   app.post("/logout", function(req, res) {
-    console.log(req.body.token);
     db.Users.update({ token: "" }, { where: { token: req.body.token } }).then(
       function(results) {
         res.status(200).json({ token: results.token });
@@ -311,7 +310,6 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-      console.log(res);
     });
   });
 
