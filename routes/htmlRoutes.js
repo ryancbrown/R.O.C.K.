@@ -67,7 +67,7 @@ module.exports = function(app) {
         artist__social_twitter: req.body.socialTwitter,
         artist__social_youtube: req.body.socialYoutube
       },
-      { where: { artist__login_email: request.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
+      { where: { artist__login_email: request.body.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
     );
   });
 
@@ -79,11 +79,10 @@ module.exports = function(app) {
   // }
 
   app.post("/profile/update/contact", function(req, res) {
-    var request = req.body;
     db.Artist.update(
       {
-        artist__real_name: request.contactName,
-        artist__email: request.contactEmail
+        artist__real_name: req.body.contactName,
+        artist__email: req.body.contactEmail
       },
       { where: { artist__login_email: request.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
     ).then(function(result) {
