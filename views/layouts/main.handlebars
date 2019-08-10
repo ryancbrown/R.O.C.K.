@@ -20,7 +20,7 @@
     {{!-- <div class="text-sm lg:flex-grow text-right"> --}}
 
       <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
-        <ul class="list-reset lg:flex justify-end flex-1 items-center">
+        <ul class="list-reset lg:flex justify-end flex-1 items-center" id="nav">
           <li class="mr-3">
             <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="/events">Search Events</a>
           </li>
@@ -73,7 +73,7 @@
           </div>
           
           <div class="flex">
-            <div class="w-3/6"></div>
+            <div class="error italic text-red-600 text-right text-sm pr-3 py-1 w-3/6"></div>
             <div class="w-1/6 pr-5">
                 <input class="border border-purple-300 px-3 py-1 rounded w-full" id="createEmail" placeholder="email">
             </div>
@@ -97,7 +97,7 @@
   {{{body}}}
     <div class="p-6 m-6"> {{!-- giving cushion for the footer --}}
   </div>
-  <footer class="footer w-full text-center border-t border-grey p-4 pin-b bg-gray-200 p-4 border-t-2 border-gray-300 text-purple-600">
+  <footer class="footer w-full text-center border-t border-grey pin-b bg-gray-200 p-4 border-t-2 border-gray-300 text-purple-600">
       <p>&copy; 2019 | <a href="#" target="_blank">Terms of Service</a> | <a href="/" target="_blank">About</a> | <a href="/events" target="_blank">Events</a> |<a href="/organizer" target="_blank">Artists</a></p>
   </footer> 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

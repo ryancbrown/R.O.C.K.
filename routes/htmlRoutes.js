@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 var db = require("../models");
 var bcrypt = require("bcrypt");
+var nodemailer = require("nodemailer");
 var moment = require("moment");
 var saltRounds = 10;
 
@@ -29,12 +30,12 @@ module.exports = function(app) {
       db.Artist.update(
         { profile__approved: true, profile__rejected: false },
         { where: { id: req.body.userID } }
-      ).then(console.log("success"));
+      );
     } else {
       db.Artist.update(
         { profile__rejected: true, profile__approved: false },
         { where: { id: req.body.userID } }
-      ).then(console.log("fail"));
+      );
     }
   });
 
@@ -47,36 +48,35 @@ module.exports = function(app) {
   });
 
   app.post("/profile/update", function(req, res) {
-    var request = req.body;
     var route = request.artistName;
     route = route.replace(/\s+/g, "-").toLowerCase();
-    var youtubeID = ytParse(request.youtubeDemo);
-    console.log(request.artistAudience);
+
     db.Artist.update(
       {
-        artist__name: request.artistName,
+        artist__name: req.body.artistName,
         artist__route_name: route,
-        artist__type: request.artistType,
-        artist__medium_genre: request.artistMedium,
-        artist__audience: request.artistAudience,
-        artist__demo_youtube: youtubeID,
-        artist__demo__spotify: request.spotifyDemo,
-        artist__profile_image: request.profileImage,
-        artist__pay_rate: request.artistPay,
-        artist__rate_negotiable: request.rateNegotiable,
-        artist__social_facebook: request.socialFacebook,
-        artist__social_twitter: request.socialTwitter,
-        artist__social_youtube: request.socialYoutube
+        artist__type: req.body.artistType,
+        artist__medium_genre: req.body.artistMedium,
+        artist__audience: req.body.artistAudience,
+        artist__demo_youtube: req.body.youtubeDemo,
+        artist__demo__spotify: req.body.spotifyDemo,
+        artist__profile_image: req.body.profileImage,
+        artist__pay_rate: req.body.artistPay,
+        artist__rate_negotiable: req.body.rateNegotiable,
+        artist__social_facebook: req.body.socialFacebook,
+        artist__social_twitter: req.body.socialTwitter,
+        artist__social_youtube: req.body.socialYoutube
       },
       { where: { artist__login_email: request.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
     );
   });
 
-  function ytParse(url) {
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    return match && match[7].length === 11 ? match[7] : false;
-  }
+  // Remove youtube regex to speed up code to prevent db create timeout
+  // function ytParse(url) {
+  //   var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+  //   var match = url.match(regExp);
+  //   return match && match[7].length === 11 ? match[7] : false;
+  // }
 
   app.post("/profile/update/contact", function(req, res) {
     var request = req.body;
@@ -87,7 +87,7 @@ module.exports = function(app) {
       },
       { where: { artist__login_email: request.user } } // TODO FIGURE OUT HOW TO CHOOSE PROFILE
     ).then(function(result) {
-      console.log("updated");
+      console.log("Profile updated!");
     });
   });
 
@@ -112,18 +112,21 @@ module.exports = function(app) {
     var req = req.body;
     var salt = bcrypt.genSaltSync(saltRounds);
     var hash = bcrypt.hashSync(req.password, salt);
+    var token = Math.random()
+      .toString(13)
+      .replace(".", "");
+    var expireToken = moment().add(6, "h");
 
-    userExists(req.email, hash); // L77
-    res.status(200);
+    userExists(req.email, hash, token, expireToken); // L77
+    res.status(200).json({ token: token });
   });
 
-  function userExists(email, hash) {
+  function userExists(email, hash, tok, expire) {
     db.Users.findAndCountAll({
       where: {
         email: email
       }
     }).then(function(results) {
-      console.log(results.count);
       // Check if the email exists
       if (results.count === 1) {
         // eslint-disable-next-line prettier/prettier
@@ -132,15 +135,12 @@ module.exports = function(app) {
         // If email does not exist add
         db.Users.create({
           email: email,
-          password: hash
+          password: hash,
+          token: tok,
+          token_expiration: expire
         }).then(function() {
-          var token = Math.random()
-            .toString(13)
-            .replace(".", "");
-          var expireToken = moment().add(6, "h");
-
           createProfile(email);
-          assignToken(email, token, expireToken);
+          assignToken(email, tok, expire);
           // eslint-disable-next-line prettier/prettier
           console.log("User \"" + email + "\" created.");
         });
@@ -163,7 +163,6 @@ module.exports = function(app) {
       } else {
         // If exists, then check password
         bcrypt.compare(req.body.password, user.password, function(err, result) {
-          console.log("true");
           // Password is correct
           if (result === true) {
             // Generate session token with expiration
@@ -196,7 +195,7 @@ module.exports = function(app) {
       if (req.body.token === "" || req.body.token === undefined) {
         console.log("No token present.");
       } else if (new Date(result.token_expiration) > new Date()) {
-        res.status(200).json({ status: "valid" });
+        res.status(200).json({ status: "valid", user: result.email });
       } else {
         res.status(200).json({ status: "invalid" });
       }
@@ -253,12 +252,11 @@ module.exports = function(app) {
 
   // Handle log out
   app.post("/logout", function(req, res) {
-    db.Users.update(
-      { token_expiration: moment()._d },
-      { where: { token: req.body.token } }
-    ).then(function() {
-      res.status(200).json({ message: "Logout successful" });
-    });
+    db.Users.update({ token: "" }, { where: { token: req.body.token } }).then(
+      function(results) {
+        res.status(200).json({ token: results.token });
+      }
+    );
   });
 
   // Load example page and pass in an example by id
@@ -293,27 +291,54 @@ module.exports = function(app) {
 
   // eslint-disable-next-line no-unused-vars
   app.post("/event-submit", function(req, res) {
-    var request = req.body; //form
-    var route = request.eventName; //looking in the form for eventName
-    route = route.replace(/\s+/g, "-").toLowerCase(); //remove space for -
-
-    console.log("req body", req.body);
+    var req = req.body; //form
+    var route = req.eventName;
+    route = route.replace(/\s+/g, "-").toLowerCase();
 
     db.Events.create({
       events_route: route,
-      event_name: request.eventName,
-      event_type: request.eventType,
-      event_date: request.eventLocation,
-      event_link: request.eventLink,
-      event_location: request.eventLocation,
-      event_description: request.eventDescription,
-      event_image: request.eventImage,
-      event_price: request.eventPrice
+      event_name: req.eventName,
+      event_type: req.eventType,
+      event_date: req.eventLocation,
+      event_link: req.eventLink,
+      event_location: req.eventLocation,
+      event_description: req.eventDescription,
+      event_image: req.eventImage,
+      event_price: req.eventPrice
     }).then(function(err, res) {
       if (err) {
         throw err;
       }
-      console.log("res: ", res);
+    });
+  });
+
+  app.post("/profile/email", function(req, res) {
+    db.Artist.findOne({
+      where: { artist__route_name: req.body.artist }
+    }).then(function(results) {
+      console.log("email " + results.artist__route_name);
+      var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAIL_PW
+        }
+      });
+
+      var mailOptions = {
+        from: req.body.organizerContact,
+        to: results.artist__email,
+        subject: req.body.emailSubject,
+        text: req.body.emailMessage
+      };
+
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
     });
   });
 

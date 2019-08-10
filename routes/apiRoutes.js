@@ -80,14 +80,14 @@ module.exports = function(app) {
       res.json(dbEvents);
     });
   });
-};
 
-app.get("/api/events", function(req, res) {
-  db.Events.findAll({
-    where: {
-      event_type: "Other"
-    }
-  }).then(function(dbEvents) {
-    res.render("other", { events: dbEvents });
+  app.get("/api/events", function(req, res) {
+    db.Events.findAll({
+      where: {
+        event_type: "Other"
+      }
+    }).then(function(dbEvents) {
+      res.render("other", { events: dbEvents });
+    });
   });
-});
+};

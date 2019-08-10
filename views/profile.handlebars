@@ -1,15 +1,37 @@
-<div class="flex flex-col min-h-screen hidden h-full items-center justify-center opacity-25 bg-gray-700" id="modal">
+<div class="flex flex-col min-h-screen hidden h-full items-center justify-center bg-gray-700" id="modal">
     <div class="container mx-auto fixed w-full">   
         <div class="flex">
             <div class="w-1/6"></div>
-
+            
             <div class="bg-gray-200 rounded w-4/6 px-16 py-16">
-            <div class="flex">
-                    <svg class="fill-current" id="modalClose" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>								
+                <div class="w-full text-right text-sm" id="modalClose">X</div>
+                <div class="w-full py-4">Organizer Name:</div>
+                <div class="flex">            
+                    <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" type="text" placeholder="Jane Organizer" id="organizerName">
                 </div>
-            </div>  
-            </div>
+                <div class="w-full py-4">Organizer Email:</div>
+                <div class="flex">            
+                    <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" type="text" placeholder="janeorganizer@email.com" id="organizerEmail">
+                </div>
 
+                <div class="w-full py-4">Subject:</div>
+                <div class="flex">            
+                    <input class="appearance-none border border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight" type="text" placeholder="I'm looking to hire you for an event!" id="emailSubject">
+                </div>
+
+                <div class="w-full py-4">Message:</div>
+                <div class="flex">            
+                    <textarea class="appearance-none border border-gray-200 h-64 rounded w-full py-2 px-4 text-gray-900 leading-tight" type="text" id="emailMessage"></textarea>
+                </div>
+
+                <div class="flex py-4"> 
+                    <button class="bg-purple-500 hover:bg-blue-700 text-white w-full py-2 px-4 rounded" id="emailArtist">
+                        Message
+                    </button>
+                </div>
+            </div> 
+
+            </div>
             <div class="w-1/6"></div>
         </div>
     </div>
@@ -23,7 +45,7 @@
         
         </div>
         <div class="w-2/6 bg-gray-100 mt-5 p-8 rounded-tr-lg">
-            <span class="text-4xl">{{artist__name}}</span> 
+            <span class="text-4xl" id="artistRoute">{{artist__name}}</span> 
             <div class="py-1">
                 <span class="bg-purple-500 uppercase h-auto w-auto text-xs text-white py-1 px-2 rounded">
                     {{artist__type}}
@@ -51,9 +73,17 @@
         </div>
         {{!-- Book Button --}}
         <div class="w-2/6 border-b border-dotted mb-4">
+            {{#if artist__email}}
             <button class="bg-purple-500 hover:bg-blue-700 text-white w-full py-2 px-4 rounded" id="bookArtist">
                 Book
             </button>
+            {{else}}
+            <div class="flex">
+            <span class="bg-gray-300 text-white text-center w-full py-2 px-4 rounded">
+                Book
+            </span>
+            </div>
+            {{/if}}
         </div>
     </div>
 

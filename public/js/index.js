@@ -1,4 +1,7 @@
 var token = { token: localStorage.getItem("token") };
+// Make user global
+var u = localStorage.getItem("user");
+
 // On page load send stored token to server
 if (token !== "") {
   $.post("/token", token).then(function(res) {
@@ -6,7 +9,14 @@ if (token !== "") {
       // Change "Log in" to "Logout", change id to "logout" so database can be updated if clicked
       $("#loadLogin")
         .text("Logout")
-        .attr({ id: "logout" });
+        .attr({ id: "logout" })
+
+      $("#existingAccount").remove()
+      if (res.user === 'admin') { 
+        $('#nav').append('<li class="mr-3"><a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="/admin">Admin</a></li>')
+      } else { 
+        $('#nav').append('<li class="mr-3"><a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="/profile/update">Edit Profile</a></li>')
+      }
 
       $("#options").append(
         // eslint-disable-next-line prettier/prettier
@@ -76,23 +86,24 @@ $("#modalClose").on("click", function() {
 
 // Handle login buttons
 // Show initial login button
-$("#loadLogin").on("click", function(e) {
-  e.preventDefault();
-  // If user clicks "login" and newAccount is visible
-  if (
-    $("#newAccount").hasClass("visible") &&
-    $("#existingAccount").hasClass("hidden")
-  ) {
-    // Then remove newAccount
-    $("#newAccount")
-      .toggleClass("hidden")
-      .removeClass("visible");
-  } else {
-    $("#existingAccount")
-      .toggleClass("hidden")
-      .addClass("visible");
-  }
-});
+  $("#loadLogin").on("click", function(e) {
+    e.preventDefault();
+    // If user clicks "login" and newAccount is visible
+    if (
+      $("#newAccount").hasClass("visible") &&
+      $("#existingAccount").hasClass("hidden")
+    ) {
+      // Then remove newAccount
+      $("#newAccount")
+        .toggleClass("hidden")
+        .removeClass("visible");
+    } else {
+      $("#existingAccount")
+        .toggleClass("hidden")
+        .addClass("visible");
+    }
+  });
+
 
 // Switch to create account
 $("#loadNewAccount").on("click", function(e) {
@@ -114,16 +125,21 @@ $("#createLogin").on("click", function(e) {
     password: $("#createPassword").val()
   };
 
-  $.post("/login/create", createLogin, function(res) {
-    localStorage.setItem("token", res.token);
-    window.location.href = window.location.href;
-  });
+  var address = $('#createEmail').val() 
+  if (!address.includes("@") || !address.includes(".")) { 
+    $(".error").html("Invalid email format")
+  } else {
+    $.post("/login/create", createLogin).then(function(res) {
+      localStorage.setItem("token", res.token);
+    });
+    window.location.href = window.location.href
+  };
 });
 
 // Update profile
 $("#profileSubmit").on("click", function(event) {
   event.preventDefault();
-  var u = localStorage.getItem("user");
+  
 
   var profile = {
     profileImage: $("#profileImage").val(),
@@ -133,7 +149,7 @@ $("#profileSubmit").on("click", function(event) {
     artistType: $("#artistType").val(),
     artistName: $("#artistName").val(),
     artistMedium: $("#artistGenre").val(),
-    youtubeDemo: $("#youtubeDemo").val(),
+    youtubeDemo: ytParse($("#youtubeDemo").val()),
     spofitfyDemo: $("#youtubeDemo").val(),
     artistAudience: $("#artistAudience").val(),
     artistPay: $("#artistPay").val(),
@@ -147,6 +163,12 @@ $("#profileSubmit").on("click", function(event) {
   var genre = $("#artistGenre").val();
   var audience = $("#artistAudience").val();
   var payrate = $("#artistPay").val();
+
+  function ytParse(url) {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return match && match[7].length === 11 ? match[7] : false;
+  }
 
   // Validate submission
   if (
@@ -169,7 +191,6 @@ $("#profileSubmit").on("click", function(event) {
 // Update contact
 $("#contactSubmit").on("click", function(event) {
   event.preventDefault();
-  var u = localStorage.getItem("user");
 
   var contact = {
     contactName: $("#contactName").val(),
@@ -212,8 +233,8 @@ $("#login").on("click", function(e) {
     localStorage.setItem("user", res.username);
     localStorage.setItem("token", res.token);
 
-    if (res.message === undefined) {
-      window.location.href = window.location.href;
+    if (res.message !== "Invalid email or password") {
+      window.location.href = window.location.href
     } else {
       // If error return reason
       $(".error").html(res.message);
@@ -226,7 +247,9 @@ $(document).on("click", "#logout", function() {
   var token = { token: localStorage.getItem("token") };
 
   $.post("/logout", token).then(function(res) {
-    console.log(res.message);
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    window.location.href = "/"
   });
 });
 
@@ -456,7 +479,6 @@ function updateTab(tab, activeTab) {
 
 // If updating user profiles in admin store active tab so tab can be reselected after page reload
 if (window.location.pathname === "/admin") {
-  var u = localStorage.getItem("user");
   var checkActive = localStorage.getItem("active");
 
   if (u !== "admin") {
@@ -477,7 +499,6 @@ if (window.location.pathname === "/admin") {
 
 // If updating user profiles in profile store active tab so tab can be reselected after page reload
 if (window.location.pathname === "/profile/update") {
-  var u = localStorage.getItem("user");
   var checkActive = localStorage.getItem("active");
 
   if (checkActive !== null) {
@@ -504,7 +525,6 @@ if (window.location.pathname === "/profile/update") {
 }
 
 // If updating user profiles in organizer store active tab so tab can be reselected after page reload
-
 $(document).on("click", ".actionProfile", function() {
   var action = {
     userID: $(this).data("user"),
@@ -513,3 +533,28 @@ $(document).on("click", ".actionProfile", function() {
 
   $.post("/admin/update", action).then(tabData());
 });
+
+function tabData() {
+  var active = $(".active").attr("id");
+  var activeTab = $(".activeTab").attr("id");
+  // Store active tab info
+  localStorage.setItem("active", active);
+  localStorage.setItem("activeTab", activeTab);
+  // Reload
+  window.location.href = window.location.href;
+}
+
+$("#emailArtist").on("click", function(){
+  var content = { 
+    organizerContact: $("#organizerEmail").val(), 
+    organizerName: $("#organizerName").val(),
+    emailSubject: $("#emailSubject").val(),
+    emailMessage: $("#emailMessage").val(),
+    artist: $("#artistRoute").text().replace(/\s+/g, "-").toLowerCase()
+  }
+
+  $.post('/profile/email', content, function(){ 
+    console.log('Email sent!')
+  })
+})
+
