@@ -1,59 +1,57 @@
 <div class="container mx-auto">
+  <ul class="flex border-b m-4 mb-6">
+      <li class="-mb-px mr-1">
+        <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/events">Everything</a>
+      </li>
+      <li class="mr-1">
+        <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/music">Music</a>
+      </li>
+      <li class="mr-1">
+        <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/art">Art</a>
+      </li>
+      <li class="mr-1">
+        <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/permart">Performance Arts</a>
+      </li>
+      <li class="mr-1">
+        <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-purple-700 font-semibold" href="/other">Other</a>
+      </li>
+  </ul>
 
-
-    <ul class="flex border-b m-4 mb-6">
-        <li class="-mb-px mr-1">
-          <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-purple-700 font-semibold" href="/events">Everything</a>
-        </li>
-        <li class="mr-1">
-          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/music">Music</a>
-        </li>
-        <li class="mr-1">
-          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/art">Art</a>
-        </li>
-        <li class="mr-1">
-          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/permart">Performance Arts</a>
-        </li>
-        <li class="mr-1">
-          <a class="bg-white inline-block py-2 px-4 text-purple-500 hover:text-purple-800 font-semibold" href="/other">Other</a>
-        </li>
-    </ul>
-
-
-    {{#each events}}
-
+{{#each events}}
 <div class="max-w-sm w-full lg:max-w-full lg:flex m-4">
     <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{event_image}}')" title="Image of {{event_name}}">
+    
     </div>
+
     <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
       <div class="mb-8">
-        <p class="uppercase text-sm text-purple-700 flex items-center">{{event_type}}</p>
-        <div class="text-gray-900 font-bold text-xl mb-2">{{event_name}}</div>
-        <p class="text-gray-700 text-base">{{event_description}}</p>
+          <p class="uppercase text-sm text-purple-700 flex items-center">{{event_type}}</p>
+          <div class="text-gray-900 font-bold text-xl mb-2">{{event_name}}</div>
+          <p class="text-gray-700 text-base">{{event_description}}</p>
       </div>
-        <div class="flex items-center">
+          <div class="flex items-center">
           <div class="text-sm">
-            <p class="text-gray-900 leading-none">DATE: {{event_date}}</p>
-            <p class="text-gray-600">LOCATION: {{event_location}}</p>
-            <p class="text-gray-600">PRICE: ${{event_price}}</p>
-            <p class="text-gray-600">GOING? <a href="{{event_link}}" target="_blank">Get Tickets</a></p>
+              <p class="text-gray-900 leading-none">DATE: {{event_date}}</p>
+              <p class="text-gray-600">LOCATION: {{event_location}}</p>
+              <p class="text-gray-600">PRICE: ${{event_price}}</p>
+              <p class="text-gray-600">GOING? <a href="{{event_link}}" target="_blank">Get Tickets</a></p>
           </div>
       </div>
     </div>
 </div>
 
-        {{!-- else option if we don't have any events, it will display the below --}}
-    {{else}}
-        <div class="bg-purple-900 text-center py-4 lg:px-4 m-5">
-            <div class="p-2 bg-purple-800 items-center text-purple-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-                <span class="flex rounded-full bg-purple-500 uppercase px-2 py-1 text-xs font-bold mr-3">Sorry!</span>
-                <span class="font-semibold mr-2 text-left flex-auto">We don't have any "other type" events in our system. Know of one? Add it!</span>
-                <a href="/event-submit">
-                <svg class="fill-current opacity-75 h-4 w-4" xmlns="#" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
-                </a>
-            </div>
-        </div>
-     {{/each}}
+{{!-- else option if we don't have any events, it will display the below --}}
+{{else}}
+<div class="bg-purple-900 text-center py-4 lg:px-4 m-5">
+    <div class="p-2 bg-purple-800 items-center text-purple-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+        <span class="flex rounded-full bg-purple-500 uppercase px-2 py-1 text-xs font-bold mr-3">Sorry!</span>
+        <span class="font-semibold mr-2 text-left flex-auto">We don't have any "other type" events in our system. Know of one? Add it!</span>
+        <a href="/event-submit">
+        <svg class="fill-current opacity-75 h-4 w-4" xmlns="#" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+        </a>
+    </div>
+</div>
+{{/each}}
 
-    {{!-- end of md:flex div --}}
+{{!-- end of md:flex div --}}
 </div>

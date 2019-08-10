@@ -10,11 +10,11 @@ if (token !== "") {
         .attr({ id: "logout" })
 
       $("#existingAccount").remove()
-      console.log(".nav")
+      console.log($("#test"))
       if (res.user === 'admin') { 
-        $('.nav').append('<div>a</div')
+        $('#nav').append('<li class="mr-3"><a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="/admin">Admin</a></li>')
       } else { 
-
+        $('#nav').append('<li class="mr-3"><a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="/profile/update">Edit Profile</a></li>')
       }
 
       $("#options").append(
@@ -66,7 +66,6 @@ $("#eventSearch").on("click", function(event) {
     eventPrice: $("#eventPrice").val()
   };
   console.log(event);
-  // grabbing events based on search
   $.get("/search", form, (req, res) => {
     var { term } = req.query;
     console.log("term", term);
@@ -127,7 +126,6 @@ $("#createLogin").on("click", function(e) {
 
   $.post("/login/create", createLogin, function(res) {
     localStorage.setItem("token", res.token);
-    window.location.href = window.location.href;
   });
 });
 
@@ -223,8 +221,8 @@ $("#login").on("click", function(e) {
     localStorage.setItem("user", res.username);
     localStorage.setItem("token", res.token);
 
-    if (res.message !== "" || unde) {
-      window.location.href = window.location.href;
+    if (res.message !== "" || undefined) {
+      window.location.href = window.location.href
     } else {
       // If error return reason
       $(".error").html(res.message);
@@ -518,7 +516,6 @@ if (window.location.pathname === "/profile/update") {
 }
 
 // If updating user profiles in organizer store active tab so tab can be reselected after page reload
-
 $(document).on("click", ".actionProfile", function() {
   var action = {
     userID: $(this).data("user"),
@@ -537,3 +534,18 @@ function tabData() {
   // Reload
   window.location.href = window.location.href;
 }
+
+$("#emailArtist").on("click", function(){
+  var content = { 
+    organizerContact: $("#organizerEmail").val(), 
+    organizerName: $("#organizerName").val(),
+    emailSubject: $("#emailSubject").val(),
+    emailMessage: $("#emailMessage").val(),
+    artist: $("#artistRoute").text().replace(/\s+/g, "-").toLowerCase()
+  }
+
+  $.post('/profile/email', content, function(){ 
+    console.log('email sent!')
+  })
+})
+

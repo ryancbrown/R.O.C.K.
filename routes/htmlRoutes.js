@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 var db = require("../models");
 var bcrypt = require("bcrypt");
+var nodemailer = require("nodemailer");
 var moment = require("moment");
 var saltRounds = 10;
 
@@ -311,6 +312,36 @@ module.exports = function(app) {
         throw err;
       }
       console.log(res);
+    });
+  });
+
+  app.post("/profile/email", function(req, res) {
+    db.Artist.findOne({
+      where: { artist__route_name: req.body.artist }
+    }).then(function(results) {
+      console.log("email " + results.artist__route_name);
+      var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAIL_PW
+        }
+      });
+
+      var mailOptions = {
+        from: req.body.organizerContact,
+        to: results.artist__email,
+        subject: req.body.emailSubject,
+        text: req.body.emailMessage
+      };
+
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
     });
   });
 
