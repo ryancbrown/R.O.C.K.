@@ -84,7 +84,7 @@ module.exports = function(app) {
         artist__real_name: req.body.contactName,
         artist__email: req.body.contactEmail
       },
-      { where: { artist__login_email: req.user } }
+      { where: { artist__login_email: req.body.user } }
     ).then(function(result) {
       console.log("Profile updated!");
     });
