@@ -48,7 +48,7 @@ module.exports = function(app) {
   });
 
   app.post("/profile/update", function(req, res) {
-    var route = request.artistName;
+    var route = req.body.artistName;
     route = route.replace(/\s+/g, "-").toLowerCase();
 
     db.Artist.update(
